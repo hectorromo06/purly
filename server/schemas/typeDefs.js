@@ -41,6 +41,11 @@ const typeDefs = gql`
     needle: String
   },
 
+  type Auth {
+    token: ID!
+    user: User
+  }
+
   type Query {
     me: User
     users: [User]
@@ -56,6 +61,10 @@ const typeDefs = gql`
     skill: String
     yarn_id: ID
     needle_id: ID
+  },
+
+  type Mutation {
+    login(email: String!, password: String!): Auth
   }
 `;
 
