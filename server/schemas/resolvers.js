@@ -20,6 +20,18 @@ const resolvers = {
       return User.findOne({ username })
         .select('-__v -password')
         .populate('patterns');
+    },
+
+    // Get all patterns or patterns made by a single user
+    patterns: async (parent, { username }) => {
+      // set ups params if there is a username or not
+      const params = username ? { username } : {};
+      return Pattern.find(params).sort({ createdAt: -1 });
+    },
+
+    // Get all patterns with all information in input
+    searchPattern: async (parent, { input }) => {
+      return Pattern.find(input).sort({ createdAt: -1 });
     }
   }
 }
