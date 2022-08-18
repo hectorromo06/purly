@@ -26,7 +26,19 @@ const typeDefs = gql`
     commentText: String
     username: String
     createdAt: String
-  }
+  },
+
+  type Yarn {
+    _id: ID
+    fiber: String
+    weight: String
+    color: String
+  },
+
+  type Needle {
+    _id: ID
+    needle: String
+  },
 `;
 
 // export the typeDefs
