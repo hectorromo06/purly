@@ -12,6 +12,7 @@ const typeDefs = gql`
 
   type Pattern {
     _id: ID
+    name: String
     project: String
     for: String
     skill: String
@@ -39,6 +40,23 @@ const typeDefs = gql`
     _id: ID
     needle: String
   },
+
+  type Query {
+    me: User
+    users: [User]
+    user(username: String!): User
+    patterns(username: String): [Pattern]
+    pattern(_id: ID!): Pattern
+    searchPattern(input: Search!): [Pattern]
+    yarn(_id: ID): [Yarn]
+    needle(_id: ID): [Needle]
+  },
+
+  input Search {
+    skill: String
+    yarn_id: ID
+    needle_id: ID
+  }
 `;
 
 // export the typeDefs
