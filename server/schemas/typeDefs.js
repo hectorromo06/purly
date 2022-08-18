@@ -20,6 +20,7 @@ const typeDefs = gql`
     createdAt: String
     yarn: String
     needle: String
+    username: String
   },
 
   type Comment {
@@ -59,12 +60,24 @@ const typeDefs = gql`
 
   input Search {
     skill: String
-    yarn_id: ID
-    needle_id: ID
+    yarnId: ID
+    needleId: ID
   },
 
   type Mutation {
     login(email: String!, password: String!): Auth
+    addUser(username: String!, email: String!, password: String!): Auth
+    addPattern(input: PatternInput!): User
+    addComment(patternId: ID!, commentText: String!): Pattern
+  },
+
+  input PatternInput {
+    name: String
+    project: String
+    for: String
+    skill: String
+    yarn: String
+    needle: String
   }
 `;
 
