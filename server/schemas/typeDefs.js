@@ -9,6 +9,17 @@ const typeDefs = gql`
     email: String
     patterns: [Pattern]
   },
+
+  type Pattern {
+    _id: ID
+    project: String
+    for: String
+    skill: String
+    commentArray: [Comment]
+    createdAt: String
+    yarn: String
+    needle: String
+  }
 `;
 
 // export the typeDefs
