@@ -19,6 +19,13 @@ const typeDefs = gql`
     createdAt: String
     yarn: String
     needle: String
+  },
+
+  type Comment {
+    _id: ID
+    commentText: String
+    username: String
+    createdAt: String
   }
 `;
 
