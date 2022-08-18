@@ -48,8 +48,17 @@ const patternSchema = new Schema(
             ref: 'needle'
         },
 
+    },
+    {
+        toJSON: {
+            getters: true
+        }
     }
 );
+
+patternSchema.virtual('commentCount').get(function() {
+    return this.comment.length;
+  });
 
 const Pattern = model('Pattern', patternSchema);
 
