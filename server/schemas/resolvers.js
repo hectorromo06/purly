@@ -32,6 +32,21 @@ const resolvers = {
     // Get all patterns with all information in input
     searchPattern: async (parent, { input }) => {
       return Pattern.find(input).sort({ createdAt: -1 });
-    }
+    },
+
+    // Get Pattern by Id
+    pattern: async (parent, { _id }) => {
+      return Pattern.findOne({ _id });
+    },
+
+    // Get All Yarn
+    yarn: async () => {
+      return Yarn.find();
+    },
+
+    // Get All Needle
+    needle: async () => {
+      return Needle.find();
+    } 
   }
 }

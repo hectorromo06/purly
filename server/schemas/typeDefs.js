@@ -53,8 +53,8 @@ const typeDefs = gql`
     patterns(username: String): [Pattern]
     pattern(_id: ID!): Pattern
     searchPattern(input: Search!): [Pattern]
-    yarn(_id: ID): [Yarn]
-    needle(_id: ID): [Needle]
+    yarn: [Yarn]
+    needle: [Needle]
   },
 
   input Search {
