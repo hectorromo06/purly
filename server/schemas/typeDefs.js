@@ -49,7 +49,6 @@ const typeDefs = gql`
 
   type Query {
     me: User
-    users: [User]
     user(username: String!): User
     patterns(username: String): [Pattern]
     pattern(_id: ID!): Pattern
