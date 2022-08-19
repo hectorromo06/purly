@@ -1,5 +1,5 @@
 // import models
-const { User, Pattern, Yarn, Needle } = require('../models');
+const { User, Pattern, YarnTypes, Needle } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 
@@ -34,9 +34,12 @@ const resolvers = {
       let params = {};
       if (input.skill) params['skill'] = input.skill;
       if (input.needleId) params['needle'] = input.needleId;
-      if (input.yarnAttributes) {
-        const yarn = Yarn.findOne(input.yarnAttributes);
-        params['yarn'] = yarn._id;
+      if (input.fiber || input.weight || input.color) {
+        let yarn = {};
+        if (input.fiber) yarn['fiber'] = input.fiber;
+        if (input.weight) yarn['weight'] = input.weight;
+        if (input.color) yarn['color'] = input.color;
+        params['yarn'] = yarn;
       }
       return Pattern.find(params).sort({ createdAt: -1 });
     },
@@ -46,9 +49,9 @@ const resolvers = {
       return Pattern.findOne({ _id });
     },
 
-    // Get All Yarn
+    // Get All Yarn Characteristics
     yarn: async () => {
-      return Yarn.find();
+      return YarnTypes.find();
     },
 
     // Get All Needle
@@ -84,7 +87,11 @@ const resolvers = {
 
     addPattern: async (parent, { input }, context) => {
       if (context.user) {
-        const pattern = await Pattern.create({ ...input, username: context.user.username });
+        const fiber = input.fiber;
+        const weight = input.weight;
+        const color = input.color;
+        const yarn = { fiber, weight, color }
+        const pattern = await Pattern.create({ ...input, username: context.user.username, yarn: yarn });
 
         await User.findByIdAndUpdate(
           { _id: context.user._id },

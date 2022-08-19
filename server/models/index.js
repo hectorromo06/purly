@@ -1,6 +1,6 @@
 const User = require('./User');
 const Pattern = require('./Pattern');
 const Needle = require("./Needle");
-const YarnAttributes = require("./YarnAttributes");
+const YarnTypes = require("./YarnTypes");
 
-module.exports = { User, Pattern, Needle, YarnAttributes };
+module.exports = { User, Pattern, Needle, YarnTypes };

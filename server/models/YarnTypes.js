@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 
-const yarnAttributesSchema = new Schema(
+const yarnTypesSchema = new Schema(
   {
     fibers: {
       type: [String],
@@ -20,6 +20,6 @@ const yarnAttributesSchema = new Schema(
   }
 );
 
-const YarnAttributes = model('YarnAttributes', yarnAttributesSchema);
+const YarnTypes = model('YarnTypes', yarnTypesSchema);
   
-module.exports = YarnAttributes;
+module.exports = YarnTypes;
