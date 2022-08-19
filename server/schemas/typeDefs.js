@@ -21,6 +21,8 @@ const typeDefs = gql`
     yarn: String
     needle: String
     username: String
+    description: String
+    instruction: [String]
   },
 
   type Comment {
@@ -77,6 +79,8 @@ const typeDefs = gql`
     skill: String
     yarn: String
     needle: String
+    instruction: [String]
+    description: String
   }
 `;
 
