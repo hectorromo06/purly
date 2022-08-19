@@ -61,7 +61,7 @@ const typeDefs = gql`
 
   input Search {
     skill: String
-    yarn: Yarn 
+    yarnAttributes: Yarn 
     needleId: ID
   },
 
