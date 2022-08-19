@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const commentSchema = require('./Comment');
 const dateFormat = require('../utils/dateFormat');
 
 const patternSchema = new Schema(
@@ -28,12 +29,7 @@ const patternSchema = new Schema(
             required: true,
             trim: true
         },
-        comment: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: 'Comment'
-            }
-        ],
+        comment: [commentSchema],
         createdAt: {
             type: Date,
             default: Date.now,
@@ -47,6 +43,16 @@ const patternSchema = new Schema(
             type: Schema.Types.ObjectId,
             ref: 'needle'
         },
+        description: {
+            type: String,
+            required: true,
+            trim: true
+        },
+        instruction: {
+            type: [String],
+            required: true,
+            trim: true
+        }
 
     },
     {
