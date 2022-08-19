@@ -39,7 +39,7 @@ const patternSchema = new Schema(
             type: Schema.Types.ObjectId,
             ref: 'Yarn'
         },
-        yarn: {
+        needle: {
             type: Schema.Types.ObjectId,
             ref: 'needle'
         },
