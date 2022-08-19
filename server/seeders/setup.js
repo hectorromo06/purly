@@ -1,9 +1,9 @@
 const db = require('../config/connection');
-const { Yarn, Needle } = require('../models');
+const { YarnAttributes, Needle } = require('../models');
 
 // set up materials
 db.once('open', async () => {
-  await Yarn.deleteMany({});
+  await YarnAttributes.deleteMany({});
   await Needle.deleteMany({});
 
   // Create Needle data
@@ -11,28 +11,17 @@ db.once('open', async () => {
   const createdNeedles = await Needle.collection.insertMany(needleData);
   console.log('Created Needles');
   console.log(createdNeedles);
-  
-  // Create Yarn Data
-  const yarnData = [];
 
   const fibers = ['acrylic', 'cotton', 'wool'];
   const weights = ['bulky', 'sport', 'fine', 'medium'];
   const colors = ['blue', 'black', 'brown', 'red', 'purple'];
 
-  for (let i = 0; i < fibers.length; i++) {
-    const fiber = fibers[i];
-    for (let j = 0; j < weights.length; j++) {
-      const weight = weights[j];
-      for (let k = 0; k < colors.length; k++) {
-        const color = colors[k];
-        yarnData.push({ fiber, weight, color });
-      }
-    }
-  }
+  // Create Yarn Data
+  const yarnAttributesData = { fibers, weights, colors };
   
-  const createdYarn = await Yarn.collection.insertMany(yarnData);
+  const createdYarnAttributes = await YarnAttributes.create(yarnAttributesData);
   console.log('Created Yarn');
-  console.log(createdYarn)
+  console.log(createdYarnAttributes)
   console.log('all done');
   process.exit(0);
 });
