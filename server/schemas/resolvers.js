@@ -1,5 +1,5 @@
 // import models
-const { User, Pattern, Comment, Yarn, Needle } = require('../models');
+const { User, Pattern, Yarn, Needle } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 
@@ -74,5 +74,35 @@ const resolvers = {
 
       return { token, user };
     },
+
+    addPattern: async (parent, { input }, context) => {
+      if (context.user) {
+        const pattern = await Pattern.create({ ...input, username: context.user.username });
+
+        await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $push: { patterns: pattern._id } },
+          { new: true, runValidators: true }
+        )
+
+        return pattern;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+
+    addComment: async (parent, { patternId, commentText }, context) => {
+      if (context.user) {
+        const updatedPattern = await Pattern.findOneAndUpdate(
+          { _id: patternId },
+          { $push: { comments: { commentText, username: context.user.username } } },
+          { new: true, runValidators: true }
+        )
+
+        return updatedPattern;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    }
   }
 }
+
+module.exports = resolvers;

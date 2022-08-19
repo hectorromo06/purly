@@ -16,7 +16,7 @@ const typeDefs = gql`
     project: String
     for: String
     skill: String
-    commentArray: [Comment]
+    comments: [Comment]
     createdAt: String
     yarn: String
     needle: String
@@ -66,7 +66,7 @@ const typeDefs = gql`
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    addPattern(input: PatternInput!): User
+    addPattern(input: PatternInput!): Pattern
     addComment(patternId: ID!, commentText: String!): Pattern
   },
 
