@@ -1,6 +1,6 @@
 const faker = require('faker');
 const db = require('../config/connection');
-const { User, Pattern, Needle} = require('../models');
+const { User, Pattern, Needle, YarnCharacteristic} = require('../models');
 
 db.once('open', async () => {
   await User.deleteMany({});
@@ -34,6 +34,9 @@ db.once('open', async () => {
 
   // created Pattern Data
   const needles = await Needle.find();
+  const fibers = await YarnCharacteristic.find({ type: "fiber" });
+  const weights = await YarnCharacteristic.find({ type: "weight" });
+  const colors = await YarnCharacteristic.find({ type: "color" });
   const patternData = [
     {
       name: 'Dragon',
@@ -41,7 +44,9 @@ db.once('open', async () => {
       project: 'scarf',
       for: 'children',
       skill: 'beginner',
-      fiber: 'acrylic', weight: 'bulky', color: 'black',
+      fiber: fibers[Math.floor(Math.random() * fibers.length)]._id,
+      weight: weights[Math.floor(Math.random() * weights.length)]._id,
+      color: colors[Math.floor(Math.random() * colors.length)]._id,
       needle: needles[Math.floor(Math.random() * needles.length)]._id,
       description: faker.lorem.words(Math.round(Math.random() * 20) + 1),
       instructions: [faker.lorem.words(Math.round(Math.random() * 20) + 1), faker.lorem.words(Math.round(Math.random() * 20) + 1), faker.lorem.words(Math.round(Math.random() * 20) + 1),]
@@ -53,7 +58,9 @@ db.once('open', async () => {
       project: 'shirt',
       for: 'women',
       skill: 'intermediate',
-      fiber: 'cotton', weight: 'fine', color: 'blue',
+      fiber: fibers[Math.floor(Math.random() * fibers.length)]._id,
+      weight: weights[Math.floor(Math.random() * weights.length)]._id,
+      color: colors[Math.floor(Math.random() * colors.length)]._id,
       needle: needles[Math.floor(Math.random() * needles.length)]._id,
       description: faker.lorem.words(Math.round(Math.random() * 20) + 1),
       instructions: [faker.lorem.words(Math.round(Math.random() * 20) + 1), faker.lorem.words(Math.round(Math.random() * 20) + 1), faker.lorem.words(Math.round(Math.random() * 20) + 1),]
@@ -65,7 +72,9 @@ db.once('open', async () => {
       project: 'shirt',
       for: 'women',
       skill: 'advance',
-      fiber: 'cotton', weight: 'fine', color: 'red',
+      fiber: fibers[Math.floor(Math.random() * fibers.length)]._id,
+      weight: weights[Math.floor(Math.random() * weights.length)]._id,
+      color: colors[Math.floor(Math.random() * colors.length)]._id,
       needle: needles[Math.floor(Math.random() * needles.length)]._id,
       description: faker.lorem.words(Math.round(Math.random() * 20) + 1),
       instructions: [faker.lorem.words(Math.round(Math.random() * 20) + 1), faker.lorem.words(Math.round(Math.random() * 20) + 1),]

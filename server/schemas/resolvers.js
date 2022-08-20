@@ -29,14 +29,20 @@ const resolvers = {
       const params = username ? { username } : {};
       return Pattern.find(params)
         .sort({ createdAt: -1 })
-        .populate('needle');
+        .populate('needle')
+        .populate('fiber')
+        .populate('weight')
+        .populate('color');
     },
 
     // Get all patterns with all information in input
     searchPattern: async (parent, { input }) => {
       return Pattern.find(input)
         .sort({ createdAt: -1 })
-        .populate('needle');
+        .populate('needle')
+        .populate('fiber')
+        .populate('weight')
+        .populate('color');
     },
 
     // Get Pattern by Id
