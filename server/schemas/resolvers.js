@@ -1,5 +1,5 @@
 // import models
-const { User, Pattern, YarnTypes, Needle } = require('../models');
+const { User, Pattern, Needle, YarnCharacteristic } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 
@@ -46,8 +46,9 @@ const resolvers = {
     },
 
     // Get All Yarn Characteristics
-    yarn: async () => {
-      return YarnTypes.find();
+    yarnCharacteristic: async (parent, { type }) => {
+      const params = type ? { type } : {}
+      return YarnCharacteristic.find(params);
     },
 
     // Get All Needle

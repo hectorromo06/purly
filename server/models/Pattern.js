@@ -36,24 +36,17 @@ const patternSchema = new Schema(
             default: Date.now,
             get: timestamp => dateFormat(timestamp)
         },
-        // yarn: {
-        //     type: Schema.Types.ObjectId,
-        //     ref: 'Yarn'
-        // },
         fiber: {
-            type: String,
-            required: true,
-            trim: true
+            type: Schema.Types.ObjectId,
+            ref: 'YarnCharacteristic'
         },
         weight: {
-            type: String,
-            required: true,
-            trim: true
+            type: Schema.Types.ObjectId,
+            ref: 'YarnCharacteristic'
         },
         color:  {
-            type: String,
-            required: true,
-            trim: true
+            type: Schema.Types.ObjectId,
+            ref: 'YarnCharacteristic'
         },
         needle: {
             type: Schema.Types.ObjectId,
