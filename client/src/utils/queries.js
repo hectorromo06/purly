@@ -34,3 +34,38 @@ query user($username: String!) {
   }
 }
 `;
+
+export const QUERY_ME = gql`
+ {
+  me {
+    _id
+    username
+    email
+    patterns {
+      _id
+      name
+      username
+      project
+      for
+      skill
+      createdAt
+      fiber
+      weight
+      color
+      description
+      instructions
+      needle {
+        _id
+        size 
+      }
+      comments {
+        _id
+        commentText
+        username
+        createdAt
+      }
+      
+    }
+  }
+}
+`;
