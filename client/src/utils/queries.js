@@ -95,3 +95,10 @@ query user($username: String!) {
   }
 }
 `;
+
+export const QUERY_NEEDLES = gql`
+query needle {
+    _id
+    size
+  }
+`;
