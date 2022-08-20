@@ -20,6 +20,7 @@ db.once('open', async () => {
   const yarnTypesData = { fibers, weights, colors };
   
   const createdYarnTypes = await YarnTypes.create(yarnTypesData);
+  
   console.log('Created YarnTypes');
   console.log(createdYarnTypes)
   console.log('all done');

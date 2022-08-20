@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 const commentSchema = require('./Comment');
-const yarnSchema = require('./Yarn')
+
 const dateFormat = require('../utils/dateFormat');
 
 const patternSchema = new Schema(
@@ -36,7 +36,25 @@ const patternSchema = new Schema(
             default: Date.now,
             get: timestamp => dateFormat(timestamp)
         },
-        yarn: yarnSchema,
+        // yarn: {
+        //     type: Schema.Types.ObjectId,
+        //     ref: 'Yarn'
+        // },
+        fiber: {
+            type: String,
+            required: true,
+            trim: true
+        },
+        weight: {
+            type: String,
+            required: true,
+            trim: true
+        },
+        color:  {
+            type: String,
+            required: true,
+            trim: true
+        },
         needle: {
             type: Schema.Types.ObjectId,
             ref: 'Needle'
@@ -46,7 +64,7 @@ const patternSchema = new Schema(
             required: true,
             trim: true
         },
-        instruction: {
+        instructions: {
             type: [String],
             required: true,
             trim: true

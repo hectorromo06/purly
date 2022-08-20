@@ -8,7 +8,8 @@ const resolvers = {
     me: async (parent, args, context) => {
       if (context.user) {
         const userData = await User.findOne({ _id: context.user._id })
-          .select('-__v -password');
+          .select('-__v -password')
+          .populate('patterns');
         
         return userData;
       }
@@ -26,27 +27,22 @@ const resolvers = {
     patterns: async (parent, { username }) => {
       // set ups params if there is a username or not
       const params = username ? { username } : {};
-      return Pattern.find(params).sort({ createdAt: -1 });
+      return Pattern.find(params)
+        .sort({ createdAt: -1 })
+        .populate('needle');
     },
 
     // Get all patterns with all information in input
     searchPattern: async (parent, { input }) => {
-      let params = {};
-      if (input.skill) params['skill'] = input.skill;
-      if (input.needleId) params['needle'] = input.needleId;
-      if (input.fiber || input.weight || input.color) {
-        let yarn = {};
-        if (input.fiber) yarn['fiber'] = input.fiber;
-        if (input.weight) yarn['weight'] = input.weight;
-        if (input.color) yarn['color'] = input.color;
-        params['yarn'] = yarn;
-      }
-      return Pattern.find(params).sort({ createdAt: -1 });
+      return Pattern.find(input)
+        .sort({ createdAt: -1 })
+        .populate('needle');
     },
 
     // Get Pattern by Id
     pattern: async (parent, { _id }) => {
-      return Pattern.findOne({ _id });
+      return Pattern.findOne({ _id })
+      .populate('needle');
     },
 
     // Get All Yarn Characteristics
@@ -87,11 +83,7 @@ const resolvers = {
 
     addPattern: async (parent, { input }, context) => {
       if (context.user) {
-        const fiber = input.fiber;
-        const weight = input.weight;
-        const color = input.color;
-        const yarn = { fiber, weight, color }
-        const pattern = await Pattern.create({ ...input, username: context.user.username, yarn: yarn });
+        const pattern = await Pattern.create({ ...input, username: context.user.username });
 
         await User.findByIdAndUpdate(
           { _id: context.user._id },

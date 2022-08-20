@@ -20,4 +20,6 @@ const yarnSchema = new Schema(
     }
 );
 
-module.exports = yarnSchema;
+const Yarn = model('Yarn', yarnSchema);
+
+module.exports = Yarn;

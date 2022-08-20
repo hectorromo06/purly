@@ -18,11 +18,13 @@ const typeDefs = gql`
     skill: String
     comments: [Comment]
     createdAt: String
-    yarn: Yarn
-    needle: String
+    fiber: String
+    weight: String
+    color: String
+    needle: Needle
     username: String
     description: String
-    instruction: [String]
+    instructions: [String]
   },
 
   type Comment {
@@ -41,7 +43,7 @@ const typeDefs = gql`
 
   type Needle {
     _id: ID
-    needle: String
+    size: String
   },
 
   type YarnTypes {
@@ -89,7 +91,7 @@ const typeDefs = gql`
     weight: String
     color: String
     needle: String
-    instruction: [String]
+    instructions: [String]
     description: String
   }
 `;
