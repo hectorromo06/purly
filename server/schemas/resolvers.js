@@ -110,7 +110,6 @@ const resolvers = {
           { $push: { comments: { commentText, username: context.user.username } } },
           { new: true, runValidators: true }
         )
-
         return updatedPattern;
       }
       throw new AuthenticationError('You need to be logged in!');
