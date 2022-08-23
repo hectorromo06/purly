@@ -30,7 +30,7 @@ const patternSchema = new Schema(
             required: true,
             trim: true
         },
-        comment: [commentSchema],
+        comments: [commentSchema],
         createdAt: {
             type: Date,
             default: Date.now,
