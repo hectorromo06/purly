@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 const commentSchema = require('./Comment');
+
 const dateFormat = require('../utils/dateFormat');
 
 const patternSchema = new Schema(
@@ -29,26 +30,34 @@ const patternSchema = new Schema(
             required: true,
             trim: true
         },
-        comment: [commentSchema],
+        comments: [commentSchema],
         createdAt: {
             type: Date,
             default: Date.now,
             get: timestamp => dateFormat(timestamp)
         },
-        yarn: {
+        fiber: {
             type: Schema.Types.ObjectId,
-            ref: 'Yarn'
+            ref: 'YarnCharacteristic'
         },
-        yarn: {
+        weight: {
             type: Schema.Types.ObjectId,
-            ref: 'needle'
+            ref: 'YarnCharacteristic'
+        },
+        color:  {
+            type: Schema.Types.ObjectId,
+            ref: 'YarnCharacteristic'
+        },
+        needle: {
+            type: Schema.Types.ObjectId,
+            ref: 'Needle'
         },
         description: {
             type: String,
             required: true,
             trim: true
         },
-        instruction: {
+        instructions: {
             type: [String],
             required: true,
             trim: true

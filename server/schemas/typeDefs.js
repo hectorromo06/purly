@@ -18,11 +18,13 @@ const typeDefs = gql`
     skill: String
     comments: [Comment]
     createdAt: String
-    yarn: String
-    needle: String
+    fiber: YarnCharacteristic
+    weight: YarnCharacteristic
+    color: YarnCharacteristic
+    needle: Needle
     username: String
     description: String
-    instruction: [String]
+    instructions: [String]
   },
 
   type Comment {
@@ -32,17 +34,16 @@ const typeDefs = gql`
     createdAt: String
   },
 
-  type Yarn {
-    _id: ID
-    fiber: String
-    weight: String
-    color: String
-  },
-
   type Needle {
     _id: ID
-    needle: String
+    size: String
   },
+
+  type YarnCharacteristic {
+    _id: ID
+    type: String
+    name: String
+  }
 
   type Auth {
     token: ID!
@@ -55,13 +56,15 @@ const typeDefs = gql`
     patterns(username: String): [Pattern]
     pattern(_id: ID!): Pattern
     searchPattern(input: Search!): [Pattern]
-    yarn: [Yarn]
+    yarnCharacteristic(type: String): [YarnCharacteristic]
     needle: [Needle]
   },
 
   input Search {
     skill: String
-    yarnId: ID
+    fiber: String
+    weight: String
+    color: String
     needleId: ID
   },
 
@@ -77,9 +80,11 @@ const typeDefs = gql`
     project: String
     for: String
     skill: String
-    yarn: String
+    fiber: String
+    weight: String
+    color: String
     needle: String
-    instruction: [String]
+    instructions: [String]
     description: String
   }
 `;

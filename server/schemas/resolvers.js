@@ -1,5 +1,5 @@
 // import models
-const { User, Pattern, Yarn, Needle } = require('../models');
+const { User, Pattern, Needle, YarnCharacteristic } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 
@@ -8,7 +8,8 @@ const resolvers = {
     me: async (parent, args, context) => {
       if (context.user) {
         const userData = await User.findOne({ _id: context.user._id })
-          .select('-__v -password');
+          .select('-__v -password')
+          .populate('patterns');
         
         return userData;
       }
@@ -26,22 +27,34 @@ const resolvers = {
     patterns: async (parent, { username }) => {
       // set ups params if there is a username or not
       const params = username ? { username } : {};
-      return Pattern.find(params).sort({ createdAt: -1 });
+      return Pattern.find(params)
+        .sort({ createdAt: -1 })
+        .populate('needle')
+        .populate('fiber')
+        .populate('weight')
+        .populate('color');
     },
 
     // Get all patterns with all information in input
     searchPattern: async (parent, { input }) => {
-      return Pattern.find(input).sort({ createdAt: -1 });
+      return Pattern.find(input)
+        .sort({ createdAt: -1 })
+        .populate('needle')
+        .populate('fiber')
+        .populate('weight')
+        .populate('color');
     },
 
     // Get Pattern by Id
     pattern: async (parent, { _id }) => {
-      return Pattern.findOne({ _id });
+      return Pattern.findOne({ _id })
+      .populate('needle');
     },
 
-    // Get All Yarn
-    yarn: async () => {
-      return Yarn.find();
+    // Get All Yarn Characteristics
+    yarnCharacteristic: async (parent, { type }) => {
+      const params = type ? { type } : {}
+      return YarnCharacteristic.find(params);
     },
 
     // Get All Needle
@@ -97,7 +110,6 @@ const resolvers = {
           { $push: { comments: { commentText, username: context.user.username } } },
           { new: true, runValidators: true }
         )
-
         return updatedPattern;
       }
       throw new AuthenticationError('You need to be logged in!');
