@@ -9,10 +9,12 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
-import Login from "./pages/Login";
-import SignupForm from "./components/SignupForm";
-import Signup from "./pages/Signup";
 import Navbar from "./components/Navbar"
+
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import SinglePattern from "./pages/SinglePattern"
+
 const httpLink = createHttpLink({
   uri: "/graphql",
 });
@@ -46,6 +48,7 @@ function App() {
        <Router>
         <div>
           <Navbar></Navbar>
+          <SinglePattern></SinglePattern>
         <Routes>
       {/* <Header
         // passing variables to Header component
@@ -69,9 +72,8 @@ function App() {
         currentNavOp === 'Pattern' &&
         <Pattern />
       } */}
-      <Route path="/" element={<Login />} />
-      <Route path="/signup" element={<Signup />} />
-      <Route path="/signup-form" element={<SignupForm />} />
+      {/* <Route path="/" element={<Login />} />
+      <Route path="/signup" element={<Signup />} /> */}
       
       </Routes>
       </div>
