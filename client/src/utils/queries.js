@@ -81,12 +81,65 @@ query pattern($username: String) {
 }
 `;
 
+export const QUERY_PATTERN = gql`
+  query pattern($_id: ID!) {
+    pattern(_id: $_id) {
+      _id
+      name
+      project
+      for
+      skill
+      comments {
+        _id
+        commentText
+        username
+        createdAt
+      }
+      createdAt
+      fiber {
+        _id
+        type
+        name
+      }
+      weight {
+        _id
+        type
+        name
+      }
+      color {
+        _id
+        type
+        name
+      }
+      needle {
+        _id
+        size
+      }
+      username
+      description
+      instructions
+    }
+  }
+`;
+
+export const QUERY_SEARCH = gql`
+  query searchPattern($input: Search!) {
+    searchPattern(input: $input) {
+      _id
+      name
+      username
+      createdAt
+    }
+  }
+`;
+
 export const QUERY_NEEDLES = gql`
 query needle {
     _id
     size
   }
 `;
+
 
 export const QUERY_YARN_WEIGHT = gql`
 query yarnCharacteristic($type: String) {
