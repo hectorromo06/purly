@@ -34,7 +34,7 @@ mutation addComment($patternId: ID!, $commentText: String!) {
     _id
     name
     project
-    for
+    madeFor
     skill
     username
     description
@@ -46,10 +46,9 @@ mutation addComment($patternId: ID!, $commentText: String!) {
 export const ADD_PATTERN = gql`
 mutation addPattern($input: PatternInput!) {
     addPattern(input: $input){
-    _id
     name
     project
-    for
+    madeFor
     skill
     fiber {
       _id

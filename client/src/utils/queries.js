@@ -11,7 +11,7 @@ query user($username: String!) {
       name
       username
       project
-      for
+      madeFor
       skill
       createdAt
       description      
@@ -31,7 +31,7 @@ export const QUERY_ME = gql`
       name
       username
       project
-      for
+      madeFor
       skill
       createdAt
       description      
@@ -46,7 +46,7 @@ query pattern($username: String) {
     _id
     name
     project
-    for
+    madeFor
     skill
     comments {
       _id
@@ -87,7 +87,7 @@ export const QUERY_PATTERN = gql`
       _id
       name
       project
-      for
+      madeFor
       skill
       comments {
         _id

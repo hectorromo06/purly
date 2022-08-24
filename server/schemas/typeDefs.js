@@ -14,7 +14,7 @@ const typeDefs = gql`
     _id: ID
     name: String
     project: String
-    for: String
+    madeFor: String
     skill: String
     comments: [Comment]
     createdAt: String
@@ -78,7 +78,7 @@ const typeDefs = gql`
   input PatternInput {
     name: String
     project: String
-    for: String
+    madeFor: String
     skill: String
     fiber: String
     weight: String
