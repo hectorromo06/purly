@@ -1,78 +1,36 @@
-import React from "react";
-// import { Link } from "react-router-dom";
+import React from 'react';
 
-// import Auth from "../../utils/auth";
+function Nav(props) {
+  // destructure props
+  const {
+    navOptions = [],
+    currentNavOp,
+    setCurrentNavOp,
+    navOpSelected,
+    setNavOpSelected
+  } = props;
 
-// TODO: Add link components to redirect to other pages!
-
-(function($) { 
-    $(function() { 
-  
-      //  open and close nav 
-      $('#navbar-toggle').click(function() {
-        $('nav ul').slideToggle();
-      });
-  
-  
-      // Hamburger toggle
-      $('#navbar-toggle').on('click', function() {
-        this.classList.toggle('active');
-      });
-  
-  
-      // If a link has a dropdown, add sub menu toggle.
-      $('nav ul li a:not(:only-child)').click(function(e) {
-        $(this).siblings('.navbar-dropdown').slideToggle("slow");
-  
-        // Close dropdown when select another dropdown
-        $('.navbar-dropdown').not($(this).siblings()).hide("slow");
-        e.stopPropagation();
-      });
-  
-  
-      // Click outside the dropdown will remove the dropdown class
-      $('html').click(function() {
-        $('.navbar-dropdown').hide();
-      });
-    }); 
-  })(jQuery); 
-
-const Navbar = () => {
   return (
-    <section class="navigation">
-      <div class="nav-container">
-        <div class="brand">
-          <a href="#!">Purly</a>
-        </div>
-        <nav>
-          <div class="nav-mobile">
-            <a id="navbar-toggle" href="#!">
-              <span></span>
-            </a>
-          </div>
-          <ul class="nav-list">
-            <li>
-              <a href="#!">Home</a>
-            </li>
-            <li>
-              <a href="#!">About</a>
-            </li>
-            <li>
-              <a href="#!">User</a>
-              <ul class="navbar-dropdown">
-                <li>
-                  <a href="#!">Dashboard</a>
-                </li>
-                <li>
-                  <a href="#!">Pattern Search</a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </section>
-  );
-};
+    <nav className="col-12 col-sm-12 col-md-6 pt-3">
+      <ul className="row">
+        {// Making a list item for each nav option
+          navOptions.map((navOp) => (
+          <li
+              className={`navOp list-unstyled col-6 col-sm-3 ${currentNavOp === navOp && !navOpSelected && 'navActive'}`}
+            key={navOp}
+          >
+            <span onClick={() => {
+              // onClick to set current nav to the click one
+              setCurrentNavOp(navOp)
+              setNavOpSelected(false)
+            }}>
+              {navOp}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  )
+}
 
-export default Navbar;
+export default Nav;
