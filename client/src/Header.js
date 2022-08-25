@@ -1,13 +1,14 @@
 import React from "react";
 import 'Header.css';
 
-function Title() {
-    return (
-        <div className="Title">
-            <h1>PURLY</h1>
-            <h2>Let's Make Something!</h2>
-        </div>
+const Header = () => {
+    return(
+        <header>
+            <h1>Purly</h1>
+        </header>
     )
 }
 
-export default Title
+export default Header
+
+
