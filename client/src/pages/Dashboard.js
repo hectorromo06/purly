@@ -1,75 +1,54 @@
 import React from "react";
-//import      from 
+// import {Link} from
+import { QUERY_ME } from "../../src/utils/queries";
+import { useQuery } from "@apollo/client";
 
-class DashboardPage extends React.Component {
-    constructor(props){
-        super(props);
+export default function Dashboard() {
+  const { data, loading } = useQuery(QUERY_ME);
 
-        this.state = {}
-    }
+  let allUsers;
 
-render(){
-    return<>
-    <div className="row">
-        <div className="col-xl-3 col-sm-6 mb-3">
-          <div className="card text-white bg-primary o-hidden h-100">
-            <div className="card-body">
-              <div className="card-body-icon">
-                <i className="fa fa-fw fa-comments"></i>
-              </div>
-              <div className="mr-5">New Messages!</div>
-            </div>
-              <span className="float-left">View Details</span>
-              <span className="float-right">
-                <i className="fa fa-angle-right"></i>
-              </span>
-          </div>
-        </div>
-        <div className="col-xl-3 col-sm-6 mb-3">
-          <div className="card text-white bg-warning o-hidden h-100">
-            <div className="card-body">
-              <div className="card-body-icon">
-                <i className="fa fa-fw fa-list"></i>
-              </div>
-              <div className="mr-5">New Patterns!</div>
-            </div>
-              <span className="float-left">View Details</span>
-              <span className="float-right">
-                <i className="fa fa-angle-right"></i>
-              </span>
-          </div>
-        </div>
-        <div className="col-xl-3 col-sm-6 mb-3">
-          <div className="card text-white bg-success o-hidden h-100">
-            <div className="card-body">
-              <div className="card-body-icon">
-                <i className="fa fa-fw fa-shopping-cart"></i>
-              </div>
-              <div className="mr-5">Placed Orders!</div>
-            </div>
-              <span className="float-left">View Details</span>
-              <span className="float-right">
-                <i className="fa fa-angle-right"></i>
-              </span>
-          </div>
-        </div>
-        <div className="col-xl-3 col-sm-6 mb-3">
-          <div className="card text-white bg-danger o-hidden h-100">
-            <div className="card-body">
-              <div className="card-body-icon">
-                <i className="fa fa-fw fa-support"></i>
-              </div>
-              <div className="mr-5">New Sign Ups!</div>
-            </div>
-              <span className="float-left">View Details</span>
-              <span className="float-right">
-                <i className="fa fa-angle-right"></i>
-              </span>
-          </div>
-        </div>
+  if (!loading) {
+    allUsers = data.QUERY_ME;
+  } else {
+    return <h2>loading...</h2>;
+  }
+
+  const renderAllUsers = (users, index) => {
+    return users.card.map((card, index) => {
+      return (
+        <Container className="col-auto">
+          <Card
+            style={{ width: "18rem", height: "30rem" }}
+            key={card._id}
+            className="shadow-lg m-1 mb-5 text-center"
+          >
+            <Card.Img variant="top" src={card.image} alt="context img" />
+            <Card.Body>
+              <Card.Title className="cardUsername pb-2">
+                {users.username}
+              </Card.Title>
+              <p>{card.description}</p>
+              <p className="mb-0">Level</p>{" "}
+              <h1 className="mb-0 test">${card.level}</h1>
+              <button className="mt-4 btn btn-success">
+                <Link className="text-decoration-none text-white" to="/pattern">
+                  Pattern
+                </Link>
+              </button>
+            </Card.Body>
+          </Card>
+        </Container>
+      );
+    });
+  };
+
+  return (
+    <>
+      <div className="container d-flex flex-wrap">
+        {allUsers.map(renderAllUsers)}
       </div>
-      </>
+      <Footer/>
+    </>
+  );
 }
-}
-
-//export default (DashboardPage);
