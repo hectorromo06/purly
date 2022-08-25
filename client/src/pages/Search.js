@@ -4,7 +4,7 @@ import PatternList from '../components/PatternList';
 
 import { useQuery, useLazyQuery } from '@apollo/client';
 
-import { QUERY_PATTERNS,QUERY_SEARCH, QUERY_NEEDLES, QUERY_YARN } from '../utils/queries';
+import { QUERY_SEARCH, QUERY_NEEDLES, QUERY_YARN } from '../utils/queries';
 
 // Search Page
 function Search() {
@@ -39,12 +39,7 @@ function Search() {
     variables: { type: "color" }
   });
   const colors = colorQuery.data?.yarnCharacteristic || [];
-  
-  // // Getting all current Patterns
-  // const { loading, data } = useQuery(QUERY_PATTERNS);
-  // let patterns = data?.patterns || [];
 
-  // const [ displayPatterns, setDisplayPatterns ] = useState(patterns);
 
   // selectSkill
   const selectSkill = (skill) => {
@@ -82,38 +77,15 @@ function Search() {
 
   const [getSearch, { loading, error, data }] = useLazyQuery(QUERY_SEARCH);
 
-  // // handleSearch
-  // const handleSearch = async () => {
-  //   const input = {};
-  //   const skillEle = document.getElementById('skill-text');
-  //   const fiberEle = document.getElementById('fiber-text');
-  //   const weightEle = document.getElementById('weight-text');
-  //   const colorEle = document.getElementById('color-text');
-  //   const needleEle = document.getElementById('needle-text');
-  //   if (skillEle.innerHTML !== 'Pick A Skill Level') input['skill'] = skillEle.innerHTML;
-  //   if (fiberEle.innerHTML !== 'Pick Fiber') input['fiber'] = fiberEle.getAttribute('fiber-id');
-  //   if (weightEle.innerHTML !== 'Pick Weight') input['weight'] = weightEle.getAttribute('weight-id');
-  //   if (colorEle.innerHTML !== 'Pick Color') input['color'] = colorEle.getAttribute('color-id');
-  //   if (needleEle.innerHTML !== 'Pick Needle Size') input['needle'] = needleEle.getAttribute('needle-id');
-  //   // eslint-disable-next-line react-hooks/rules-of-hooks
-    
-  //   // setDisplayPatterns(searchPatterns);
-  //   setSkillText('Pick A Skill Level');
-  //   setFiberText('Pick Fiber');
-  //   setWeightText('Pick Weight');
-  //   setColorText('Pick Color');
-  //   setNeedleText('Pick Needle Size');
-  // }
-
   if (needleQuery.loading || fiberQuery.loading || weightQuery.loading || colorQuery.loading) {
     return <div>Loading...</div>;
   }
 
   return (
-    <div className="search">
+    <div>
       <div className="search-bar">
         <div className='dropdown' id='skill-dropdown'>
-          <div id='skill-text'>{skillText}</div>
+          <div id='skill-text' class="dropdown-text">{skillText}</div>
           <div className='dropdown-content'>
             {
               skills.map((skill) =>
@@ -123,7 +95,7 @@ function Search() {
           </div>
         </div>
         <div className='dropdown' id='fiber-dropdown'>
-          <div id='fiber-text'>{fiberText}</div>
+          <div id='fiber-text' class="dropdown-text">{fiberText}</div>
           <div className='dropdown-content'>
             {
               fibers.map((fiber) =>
@@ -133,7 +105,7 @@ function Search() {
           </div>
         </div>
         <div className='dropdown' id='weight-dropdown'>
-          <div id='weight-text'>{weightText}</div>
+          <div id='weight-text' class="dropdown-text">{weightText}</div>
           <div className='dropdown-content'>
             {
               weights.map((weight) =>
@@ -143,7 +115,7 @@ function Search() {
           </div>
         </div>
         <div className='dropdown' id='color-dropdown'>
-          <div id='color-text'>{colorText}</div>
+          <div id='color-text' class="dropdown-text">{colorText}</div>
           <div className='dropdown-content'>
             {
               colors.map((color) =>
@@ -153,7 +125,7 @@ function Search() {
           </div>
         </div>
         <div className='dropdown' id='needle-dropdown'>
-          <div id='needle-text'>{needleText}</div>
+          <div id='needle-text' class="dropdown-text">{needleText}</div>
           <div className='dropdown-content'>
             {
               needles.map((needle) =>
@@ -162,7 +134,7 @@ function Search() {
             }
           </div>
         </div>
-        <div onClick={() => {
+        <div class="search-btn" onClick={() => {
           const input = {};
           const skillEle = document.getElementById('skill-text');
           const fiberEle = document.getElementById('fiber-text');

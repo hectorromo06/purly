@@ -32,14 +32,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-function App() {
-//  // navigation options
-//  const [navOptions] = useState(['Login', 'Dashboard', 'About Us', 'Pattern']);
-
-//  // Setting the current render to Login
-//   // setCurrentNavOp is used to change the navOption
-//   const [currentNavOp, setCurrentNavOp] = useState(navOptions[0]);
-  
+function App() {  
 
   return (
     <ApolloProvider client={client}>
