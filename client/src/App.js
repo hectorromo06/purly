@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {
   ApolloClient,
@@ -14,6 +14,7 @@ import Navbar from "./components/Navbar"
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import SinglePattern from "./pages/SinglePattern"
+// import Search from "./pages/Search"
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -35,47 +36,29 @@ const client = new ApolloClient({
 });
 
 function App() {
- // navigation options
- const [navOptions] = useState(['Login', 'Dashboard', 'About Us', 'Pattern']);
-
- // Setting the current render to Login
-  // setCurrentNavOp is used to change the navOption
-  const [currentNavOp, setCurrentNavOp] = useState(navOptions[0]);
-  
 
   return (
     <ApolloProvider client={client}>
        <Router>
+
         <div>
-          <Navbar></Navbar>
-          <SinglePattern></SinglePattern>
-        <Routes>
-      {/* <Header
-        // passing variables to Header component
-        navOptions={navOptions}
-        currentNavOp={currentNavOp}
-        setCurrentNavOp={setCurrentNavOp}
-      /> */}
-      {/* { // if currentNavOp is 'Login' render Login page
-        currentNavOp === 'Login' &&
-        <Login />
-      } */}
-      {/* { // if currentNavOP is 'Dashboard' render Dashboard component
-        currentNavOp === 'Dashboard' &&
-        <Dashboard />
-      } */}
-      {/* { // if cuurentNavOp is 'About Us' render About Us component
-        currentNavOp === 'About Us' &&
-        <About />
-      } */}
-      {/* { // if cuurentNavOp is 'Pattern' render Pattern component
-        currentNavOp === 'Pattern' &&
-        <Pattern />
-      } */}
-      {/* <Route path="/" element={<Login />} />
-      <Route path="/signup" element={<Signup />} /> */}
-      
+          <Navbar />
+          <div>
+          <Routes>
+            <Route
+            path = '/search'
+            element={<Search />}
+            />
+            <Route
+            path = '/singlepattern'
+            element={<SinglePattern />}
+            />
+            <Route
+            path = '/signup'
+            element={<Signup />}
+            />
       </Routes>
+      </div>
       </div>
       </Router>
     </ApolloProvider>

@@ -41,6 +41,7 @@ const SinglePattern = (props) => {
           <p>{pattern.description}</p>
         </div>
         <div className="card-body">
+          {/* MAP over instructions its just a string rn */} 
           <p>{pattern.instructions}</p>
         </div>
       </div>

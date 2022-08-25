@@ -1,36 +1,43 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-function Nav(props) {
-  // destructure props
-  const {
-    navOptions = [],
-    currentNavOp,
-    setCurrentNavOp,
-    navOpSelected,
-    setNavOpSelected
-  } = props;
+import Auth from '../../utils/auth';
+
+
+const Navbar = () => {
+  const logout = event => {
+    event.preventDefault();
+    Auth.logout();
+  };
 
   return (
-    <nav className="col-12 col-sm-12 col-md-6 pt-3">
-      <ul className="row">
-        {// Making a list item for each nav option
-          navOptions.map((navOp) => (
-          <li
-              className={`navOp list-unstyled col-6 col-sm-3 ${currentNavOp === navOp && !navOpSelected && 'navActive'}`}
-            key={navOp}
-          >
-            <span onClick={() => {
-              // onClick to set current nav to the click one
-              setCurrentNavOp(navOp)
-              setNavOpSelected(false)
-            }}>
-              {navOp}
-            </span>
-          </li>
-        ))}
-      </ul>
-    </nav>
-  )
-}
+    <header className="">
+    <div className="">
+      <Link to="/">
+        <h1>Purly</h1>
+      </Link>
 
-export default Nav;
+      <nav className="">
+        <Link to="/search">Search</Link>
+        {Auth.loggedIn() ? (
+          <>
+            <Link to="/dashboard">Dashboard</Link>
+            <a href="/" onClick={logout}>
+              Logout
+            </a>
+            
+          </>
+        ) : (
+          <>
+           <Link to="/login">Login</Link>
+           <Link to="/signup">Sign Up</Link>
+          </>
+
+        )}
+      </nav>
+    </div>
+  </header>
+);
+};
+
+export default Navbar;
