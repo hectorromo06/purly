@@ -45,38 +45,39 @@ const AddPattern = () => {
     // const needleData = [{ size: '2.25mm' }, { size: '2.75mm' }, { size: '3mm' }, { size: '3.25mm' }, 
     // { size: '5mm' }, { size: '6mm' }];
 
-      // Skill List
-  const [skills] = useState(['beginner', 'intermediate', 'advance']);
+    // Skill List
+    const skills = [{value: 'beginner'}, {value: 'intermediate'}, {value: 'advanced'}];
 
 
-  // Getting Fiber Data
-  const fiberQuery = useQuery(QUERY_YARN, {
-    variables: { type: "fiber" }
-  });
-  const fibers = fiberQuery.data?.yarnCharacteristic || [];
-//   console.log(fiberQuery.data?.yarnCharacteristic);
+    // Getting Fiber Data
+    const fiberQuery = useQuery(QUERY_YARN, {
+        variables: { type: "fiber" }
+    });
+    const fibers = fiberQuery.data?.yarnCharacteristic || [];
+    //   console.log(fiberQuery.data?.yarnCharacteristic);
 
-  // Getting Weight Data
-  const weightQuery = useQuery(QUERY_YARN, {
-    variables: { type: "weight" }
-  });
-  const weights = weightQuery.data?.yarnCharacteristic  || [];
+    // Getting Weight Data
+    const weightQuery = useQuery(QUERY_YARN, {
+        variables: { type: "weight" }
+    });
+    const weights = weightQuery.data?.yarnCharacteristic || [];
 
-  // Getting Color Data
-  const colorQuery = useQuery(QUERY_YARN, {
-    variables: { type: "color" }
-  });
-  const colors =  colorQuery.data?.yarnCharacteristic  || [];
+    // Getting Color Data
+    const colorQuery = useQuery(QUERY_YARN, {
+        variables: { type: "color" }
+    });
+    const colors = colorQuery.data?.yarnCharacteristic || [];
 
-  // Getting Needle Data
-  const needleQuery = useQuery(QUERY_NEEDLES);
-  const needles = needleQuery.data?.needle || [];
+    // Getting Needle Data
+    const needleQuery = useQuery(QUERY_NEEDLES);
+    const needles = needleQuery.data?.needle || [];
+    console.log('Needle Query' + needleQuery);
 
 
     const [addPattern, { data, error }] = useMutation(ADD_PATTERN)
 
-      // submit form
-      const handleFormSubmit = async (event) => {
+    // submit form
+    const handleFormSubmit = async (event) => {
         event.preventDefault();
 
         try {
@@ -90,26 +91,6 @@ const AddPattern = () => {
     };
 
 
-
-    // const getFiber = () => {
-    //     const { data } = useQuery(QUERY_YARN, {
-    //         variables: { type: fiber }
-    //     });
-    //     console.log(data);
-    //     const fiberId = data._id;
-    //     const fiberName = data.name;
-
-    //     fiberArr = [fiberId, fiberName]
-    //     console.log(fiberArr);
-
-    //     return fiberArr
-    // }
-
-    //     console.log(getFiber);
-    
-
-  
-
     return (
 
         <section>
@@ -120,7 +101,7 @@ const AddPattern = () => {
                     <label htmlFor='name'>Name</label>
                 </div>
                 <div>
-                    {<input type="text" value={formState.name} 
+                    {<input type="text" value={formState.name}
                     /*onChange={(e) => setFormState({formState, name: e.target.value})} 
                     onBlur={handleChange}*/ name="name" />}
                 </div>
@@ -129,7 +110,7 @@ const AddPattern = () => {
                     <label htmlFor='project'>Project</label>
                 </div>
                 <div>
-                    {<input type="text" value={formState.project} 
+                    {<input type="text" value={formState.project}
                     /*onChange={(e) => setFormState({formState, project: e.target.value})} 
                     onBlur={handleChange}*/ name="project" />}
                 </div>
@@ -138,7 +119,7 @@ const AddPattern = () => {
                     <label htmlFor='madeFor'>Made For</label>
                 </div>
                 <div>
-                    {<input type="text" value={formState.madeFor} 
+                    {<input type="text" value={formState.madeFor}
                     /*onChange={(e) => setFormState({formState, madeFor: e.target.value})} 
                     onBlur={handleChange}*/ name="madeFor" />}
                 </div>
@@ -147,9 +128,13 @@ const AddPattern = () => {
                     <label htmlFor='skill'>Skill</label>
                 </div>
                 <div>
-                    {<input type="text" value={formState.skill} 
-                    /*onChange={(e) => setFormState({formState, skill: e.target.value})} 
-                    onBlur={handleChange}*/ name="skill" />}
+                    <select>
+                        <option value='Select a skill level'>Select a skill level</option>
+                        {skills.map((skill) => (
+                            <option key={skill.value} value={skill.value}>
+                                {skill.value}
+                            </option>))};
+                    </select>
                 </div>
 
                 {/* fiber, weight, color, needle */}
@@ -184,10 +169,10 @@ const AddPattern = () => {
                 <div>
                     <select>
                         <option value='Select a needle size'>Select a needle size</option>
-                        {needleData.map((needle) => (
-                        <option key={needle.size} value={needle.size}>
-                            {needle.size}
-                        </option>))};
+                        {needles.map((needle) => (
+                            <option key={needle._id} value={needle._id}>
+                                {needle.size}
+                            </option>))};
                     </select>
                 </div>
 
