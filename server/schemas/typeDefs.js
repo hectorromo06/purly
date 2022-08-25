@@ -65,7 +65,7 @@ const typeDefs = gql`
     fiber: String
     weight: String
     color: String
-    needleId: ID
+    needle: String
   },
 
   type Mutation {
