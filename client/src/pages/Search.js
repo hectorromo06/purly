@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import PatternList from '../components/PatternList';
 
-import { useQuery } from '@apollo/client';
+import { useQuery, useLazyQuery } from '@apollo/client';
 
 import { QUERY_PATTERNS,QUERY_SEARCH, QUERY_NEEDLES, QUERY_YARN } from '../utils/queries';
 
@@ -20,31 +20,31 @@ function Search() {
 
   // Getting Needle Data
   const needleQuery = useQuery(QUERY_NEEDLES);
-  const needles = needleQuery.data?.needle || {};
+  const needles = needleQuery.data?.needle || [];
 
   // Getting Fiber Data
   const fiberQuery = useQuery(QUERY_YARN, {
-    variables: { type: 'fiber' }
+    variables: { type: "fiber" }
   });
-  const fibers = fiberQuery.data?.yarn || {};
+  const fibers = fiberQuery.data?.yarnCharacteristic || [];
 
   // Getting Weight Data
   const weightQuery = useQuery(QUERY_YARN, {
-    variables: { type: 'weight' }
+    variables: { type: "weight" }
   });
-  const weights = weightQuery.data?.yarn || {};
+  const weights = weightQuery.data?.yarnCharacteristic  || [];
 
   // Getting Color Data
   const colorQuery = useQuery(QUERY_YARN, {
-    variables: { type: 'color' }
+    variables: { type: "color" }
   });
-  const colors = colorQuery.data?.yarn || {};
+  const colors = colorQuery.data?.yarnCharacteristic || [];
+  
+  // // Getting all current Patterns
+  // const { loading, data } = useQuery(QUERY_PATTERNS);
+  // let patterns = data?.patterns || [];
 
-  // Getting all current Patterns
-  const { loading, data } = useQuery(QUERY_PATTERNS);
-  let patterns = data?.patterns || {};
-
-  const { displayPatterns, setDisplayPatterns } = useState(patterns);
+  // const [ displayPatterns, setDisplayPatterns ] = useState(patterns);
 
   // selectSkill
   const selectSkill = (skill) => {
@@ -79,36 +79,33 @@ function Search() {
     setNeedleText(needle.size);
   }
 
-  // handleSearch
-  const handleSearch = async () => {
-    const input = {};
-    const skillEle = document.getElementById('skill-text');
-    const fiberEle = document.getElementById('fiber-text');
-    const weightEle = document.getElementById('weight-text');
-    const colorEle = document.getElementById('color-text');
-    const needleEle = document.getElementById('needle-text');
-    if (skillEle.innerHTML !== 'Pick A Skill Level') input['skill'] = skillEle.innerHTML;
-    if (fiberEle.innerHTML !== 'Pick Fiber') input['fiber'] = fiberEle.getAttribute('fiber-id');
-    if (weightEle.innerHTML !== 'Pick Weight') input['weight'] = weightEle.getAttribute('weight-id');
-    if (colorEle.innerHTML !== 'Pick Color') input['color'] = colorEle.getAttribute('color-id');
-    if (needleEle.innerHTML !== 'Pick Needle Size') input['needle'] = needleEle.getAttribute('needle-id');
 
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const { data } = await useQuery(QUERY_SEARCH, {
-      variables: { input }
-    });
+  const [getSearch, { loading, error, data }] = useLazyQuery(QUERY_SEARCH);
 
-    const searchPatterns = data?.patterns || {};
+  // // handleSearch
+  // const handleSearch = async () => {
+  //   const input = {};
+  //   const skillEle = document.getElementById('skill-text');
+  //   const fiberEle = document.getElementById('fiber-text');
+  //   const weightEle = document.getElementById('weight-text');
+  //   const colorEle = document.getElementById('color-text');
+  //   const needleEle = document.getElementById('needle-text');
+  //   if (skillEle.innerHTML !== 'Pick A Skill Level') input['skill'] = skillEle.innerHTML;
+  //   if (fiberEle.innerHTML !== 'Pick Fiber') input['fiber'] = fiberEle.getAttribute('fiber-id');
+  //   if (weightEle.innerHTML !== 'Pick Weight') input['weight'] = weightEle.getAttribute('weight-id');
+  //   if (colorEle.innerHTML !== 'Pick Color') input['color'] = colorEle.getAttribute('color-id');
+  //   if (needleEle.innerHTML !== 'Pick Needle Size') input['needle'] = needleEle.getAttribute('needle-id');
+  //   // eslint-disable-next-line react-hooks/rules-of-hooks
     
-    setDisplayPatterns(searchPatterns);
-    setSkillText('Pick A Skill Level');
-    setFiberText('Pick Fiber');
-    setWeightText('Pick Weight');
-    setColorText('Pick Color');
-    setNeedleText('Pick Needle Size');
-  }
+  //   // setDisplayPatterns(searchPatterns);
+  //   setSkillText('Pick A Skill Level');
+  //   setFiberText('Pick Fiber');
+  //   setWeightText('Pick Weight');
+  //   setColorText('Pick Color');
+  //   setNeedleText('Pick Needle Size');
+  // }
 
-  if (needleQuery.loading || fiberQuery.loading || weightQuery.loading || colorQuery.loading || loading) {
+  if (needleQuery.loading || fiberQuery.loading || weightQuery.loading || colorQuery.loading) {
     return <div>Loading...</div>;
   }
 
@@ -165,9 +162,29 @@ function Search() {
             }
           </div>
         </div>
-        <button onClick={handleSearch}>Search</button>
+        <div onClick={() => {
+          const input = {};
+          const skillEle = document.getElementById('skill-text');
+          const fiberEle = document.getElementById('fiber-text');
+          const weightEle = document.getElementById('weight-text');
+          const colorEle = document.getElementById('color-text');
+          const needleEle = document.getElementById('needle-text');
+          if (skillEle.innerHTML !== 'Pick A Skill Level') input['skill'] = skillEle.innerHTML;
+          if (fiberEle.innerHTML !== 'Pick Fiber') input['fiber'] = fiberEle.getAttribute('fiber-id');
+          if (weightEle.innerHTML !== 'Pick Weight') input['weight'] = weightEle.getAttribute('weight-id');
+          if (colorEle.innerHTML !== 'Pick Color') input['color'] = colorEle.getAttribute('color-id');
+          if (needleEle.innerHTML !== 'Pick Needle Size') input['needle'] = needleEle.getAttribute('needle-id');
+          console.log(input);
+          
+          getSearch({ variables: { input } });
+          setSkillText('Pick A Skill Level');
+          setFiberText('Pick Fiber');
+          setWeightText('Pick Weight');
+          setColorText('Pick Color');
+          setNeedleText('Pick Needle Size');;
+        }}>Search</div>
       </div>
-      <PatternList patterns={displayPatterns}/>
+      {data?.searchPattern && <PatternList patterns={data.searchPattern} />}
     </div> 
   )
 

@@ -1,23 +1,23 @@
 import { gql } from '@apollo/client';
 
 export const QUERY_USER = gql`
-query user($username: String!) {
-  user(username: $username) {
-    _id
-    username
-    email
-    patterns {
+  query user($username: String!) {
+    user(username: $username) {
       _id
-      name
       username
-      project
-      for
-      skill
-      createdAt
-      description      
+      email
+      patterns {
+        _id
+        name
+        username
+        project
+        for
+        skill
+        createdAt
+        description      
+      }
     }
   }
-}
 `;
 
 export const QUERY_ME = gql`
@@ -41,44 +41,44 @@ export const QUERY_ME = gql`
 `;
 
 export const QUERY_PATTERNS = gql`
-query pattern($username: String) {
+  query pattern($username: String) {
     patterns(username: $username) {
-    _id
-    name
-    project
-    for
-    skill
-    comments {
       _id
-      commentText
-      username
+      name
+      project
+      for
+      skill
+      comments {
+        _id
+        commentText
+        username
+        createdAt
+      }
       createdAt
+      fiber {
+        _id
+        type
+        name
+      }
+      weight {
+        _id
+        type
+        name
+      }
+      color {
+        _id
+        type
+        name
+      }
+      needle {
+        _id
+        size
+      }
+      username
+      description
+      instructions
     }
-    createdAt
-    fiber {
-      _id
-      type
-      name
-    }
-    weight {
-      _id
-      type
-      name
-    }
-    color {
-      _id
-      type
-      name
-    }
-    needle {
-      _id
-      size
-    }
-    username
-    description
-    instructions
   }
-}
 `;
 
 export const QUERY_PATTERN = gql`
@@ -123,55 +123,32 @@ export const QUERY_PATTERN = gql`
 `;
 
 export const QUERY_SEARCH = gql`
-  query searchPattern($input: Search!) {
+  query searchPattern($input: Search) {
     searchPattern(input: $input) {
       _id
       name
       username
       createdAt
+      description
     }
   }
 `;
 
 export const QUERY_NEEDLES = gql`
-query needle {
-    _id
-    size
+  {
+    needle {
+      _id
+      size
   }
+}
 `;
 
 export const QUERY_YARN = gql`
-query yarnCharacteristic($type: String) {
-    yarnCharacteristic(type: $type)
-    _id
-    type
-    name
-  }
-`;
-
-export const QUERY_YARN_WEIGHT = gql`
-query yarnCharacteristic($type: String) {
-    yarnCharacteristic(type: $type)
-    _id
-    type
-    name
-  }
-`;
-
-export const QUERY_YARN_COLOR = gql`
-query yarnCharacteristic($type: String) {
-    yarnCharacteristic(type: $type)
-    _id
-    type
-    name
-  }
-`;
-
-export const QUERY_YARN_FIBER = gql`
-query yarnCharacteristic($type: String) {
-    yarnCharacteristic(type: $type)
-    _id
-    type
-    name
+  query yarnCharacteristic($type: String) {
+    yarnCharacteristic(type: $type) {
+      _id
+      type
+      name
+    }
   }
 `;
