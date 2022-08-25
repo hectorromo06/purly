@@ -141,29 +141,12 @@ query needle {
 `;
 
 
-export const QUERY_YARN_WEIGHT = gql`
-query yarnCharacteristic($type: String) {
-    yarnCharacteristic(type: $type)
-    _id
-    type
-    name
-  }
-`;
-
-export const QUERY_YARN_COLOR = gql`
-query yarnCharacteristic($type: String) {
-    yarnCharacteristic(type: $type)
-    _id
-    type
-    name
-  }
-`;
-
-export const QUERY_YARN_FIBER = gql`
-query yarnCharacteristic($type: String) {
-    yarnCharacteristic(type: $type)
-    _id
-    type
-    name
+export const QUERY_YARN = gql`
+  query yarnCharacteristic($type: String) {
+    yarnCharacteristic(type: $type) {
+      _id
+      type
+      name
+    }
   }
 `;

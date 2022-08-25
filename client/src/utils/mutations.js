@@ -1,4 +1,4 @@
-import gql from '@apollo/client';
+import { gql } from '@apollo/client';
 
 export const ADD_USER = gql`
   mutation addUser($username: String!, $email: String!, $password: String!) {
@@ -46,6 +46,7 @@ mutation addComment($patternId: ID!, $commentText: String!) {
 export const ADD_PATTERN = gql`
 mutation addPattern($input: PatternInput!) {
     addPattern(input: $input){
+        _id
     name
     project
     madeFor
