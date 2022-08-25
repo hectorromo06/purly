@@ -15,12 +15,12 @@ return (
         <h1>
             <a href='/'>Purly</a>
         </h1>
-        <Navbar
+        {/* <Navbar
             // passing variables to Header component
             navOptions={navOptions}
             currentNavOp={currentNavOp}
             navOpSelected={navOpSelected}
-        />
+        /> */}
     </header>
     )
 }
