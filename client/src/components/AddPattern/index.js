@@ -39,6 +39,16 @@ const AddPattern = () => {
         instructions
     } = formState
 
+    // update state based on form input changes
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+
+        setFormState({
+            ...formState,
+            [name]: value,
+        });
+    };
+
     // const fibers = [{ value: 'acrylic' }, { value: 'cotton' }, { value: 'wool' }];
     // const weights = [{ value: 'bulky' }, { value: 'sport' }, { value: 'fine' }, { value: 'medium' }];
     // const colors = [{ value: 'blue' }, { value: 'black' }, { value: 'brown' }, { value: 'red' }, { value: 'purple' }];
@@ -46,7 +56,7 @@ const AddPattern = () => {
     // { size: '5mm' }, { size: '6mm' }];
 
     // Skill List
-    const skills = [{value: 'beginner'}, {value: 'intermediate'}, {value: 'advanced'}];
+    const skills = [{ value: 'beginner' }, { value: 'intermediate' }, { value: 'advanced' }];
 
 
     // Getting Fiber Data
@@ -71,7 +81,7 @@ const AddPattern = () => {
     // Getting Needle Data
     const needleQuery = useQuery(QUERY_NEEDLES);
     const needles = needleQuery.data?.needle || [];
-    console.log('Needle Query' + needleQuery);
+    // console.log('Needle Query' + needleQuery);
 
 
     const [addPattern, { data, error }] = useMutation(ADD_PATTERN)
@@ -102,6 +112,7 @@ const AddPattern = () => {
                 </div>
                 <div>
                     {<input type="text" value={formState.name}
+                    onChange={handleChange}
                     /*onChange={(e) => setFormState({formState, name: e.target.value})} 
                     onBlur={handleChange}*/ name="name" />}
                 </div>
@@ -111,6 +122,7 @@ const AddPattern = () => {
                 </div>
                 <div>
                     {<input type="text" value={formState.project}
+                    onChange={handleChange}
                     /*onChange={(e) => setFormState({formState, project: e.target.value})} 
                     onBlur={handleChange}*/ name="project" />}
                 </div>
@@ -120,6 +132,7 @@ const AddPattern = () => {
                 </div>
                 <div>
                     {<input type="text" value={formState.madeFor}
+                    onChange={handleChange}
                     /*onChange={(e) => setFormState({formState, madeFor: e.target.value})} 
                     onBlur={handleChange}*/ name="madeFor" />}
                 </div>
@@ -128,6 +141,8 @@ const AddPattern = () => {
                     <label htmlFor='skill'>Skill</label>
                 </div>
                 <div>
+
+                    {/* skill select */}
                     <select>
                         <option value='Select a skill level'>Select a skill level</option>
                         {skills.map((skill) => (
@@ -182,7 +197,9 @@ const AddPattern = () => {
                 </div>
                 <div>
                     <textarea name='description' value={formState.description}
-                    /*onChange={(e) => setFormState({formState, description: e.target.value})} onBlur={handleChange}*/ rows="5" cols='23' />
+                    onChange={handleChange}
+                    /*onChange={(e) => setFormState({formState, description: e.target.value})} onBlur={handleChange}*/ 
+                    rows="5" cols='23' />
                 </div>
 
                 <div>
@@ -190,7 +207,9 @@ const AddPattern = () => {
                 </div>
                 <div>
                     <textarea name='instructions' value={formState.instructions}
-                    /*onChange={(e) => setFormState({formState, instructions: e.target.value})} onBlur={handleChange}*/ rows="5" cols='23' />
+                    onChange={handleChange}
+                    /*onChange={(e) => setFormState({formState, instructions: e.target.value})} onBlur={handleChange}*/ 
+                    rows="5" cols='23' />
                 </div>
 
                 <button type="submit">
