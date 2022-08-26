@@ -15,6 +15,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import SinglePattern from "./pages/SinglePattern"
 import Search from "./pages/Search"
+import AddPattern from "./components/AddPattern"
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -60,6 +61,10 @@ function App() {
             <Route
             path = '/signup'
             element={<Signup />}
+              />
+            <Route
+              path='/createPattern'
+              element={<AddPattern />}
             />
       </Routes>
       </div>
