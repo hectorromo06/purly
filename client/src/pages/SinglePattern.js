@@ -38,6 +38,8 @@ const SinglePattern = (props) => {
         </div>
       </div>
     </div>
+
+    // ADD COMMENT FUNCTIONALITY
   );
 }
 
