@@ -1,15 +1,14 @@
 import React from 'react';
 
-// import PatternList from '../components/PatternList';
 import { useQuery } from '@apollo/client';
 
-import { QUERY_PATTERNS } from '../utils/queries';
+import { QUERY_PATTERN } from '../utils/queries';
 import { useParams } from 'react-router-dom';
 
 const SinglePattern = (props) => {
     const { id: patternId } = useParams();
-    const { loading, data } = useQuery(QUERY_PATTERNS, {
-        variables: { id: patternId },
+    const { loading, data } = useQuery(QUERY_PATTERN, {
+        variables: { _id: patternId },
       });
 
     const pattern = data?.pattern || {};
@@ -21,7 +20,7 @@ const SinglePattern = (props) => {
     // Image tag should be added soon
  return (
     <div>
-      <div className="card mb-3">
+      <div className="single-pattern">
         <p className="card-header">
           <span style={{ fontWeight: 700 }} className="text-light">
             {pattern.username}
@@ -29,19 +28,12 @@ const SinglePattern = (props) => {
           Selected on {pattern.createdAt}
         </p>
         <h3>Materials needed:</h3>
-        <ul>
-            <li>
-            {pattern.needle}
-            </li>
-            <li>
-            {pattern.weight}
-            </li>
-        </ul>
+        
         <div className="card-body">
           <p>{pattern.description}</p>
         </div>
         <div className="card-body">
-          {/* MAP over instructions its just a string rn */} 
+          {/* MAP over instructions its just a string rn */}
           <p>{pattern.instructions}</p>
         </div>
       </div>

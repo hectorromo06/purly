@@ -14,7 +14,7 @@ import Navbar from "./components/Navbar"
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import SinglePattern from "./pages/SinglePattern"
-// import Search from "./pages/Search"
+import Search from "./pages/Search"
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -45,12 +45,16 @@ function App() {
           <Navbar />
           <div>
           <Routes>
+          <Route
+            path = '/login'
+            element={<Login />}
+            />
             <Route
             path = '/search'
             element={<Search />}
             />
             <Route
-            path = '/singlepattern'
+            path = '/pattern/:id'
             element={<SinglePattern />}
             />
             <Route
