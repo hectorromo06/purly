@@ -8,6 +8,8 @@ import { QUERY_SEARCH, QUERY_NEEDLES, QUERY_YARN } from '../utils/queries';
 
 // Search Page
 function Search() {
+  const [searchInfo, setSearchInfo] = useState(null);
+  
   const [skillText, setSkillText] = useState('Pick A Skill Level');
   const [fiberText, setFiberText] = useState('Pick Fiber');
   const [weightText, setWeightText] = useState('Pick Weight');
@@ -44,48 +46,56 @@ function Search() {
   // selectSkill
   const selectSkill = (skill) => {
     setSkillText(skill);
+    setSearchInfo({ ...searchInfo, skill });
   }
 
   // selectFiber
   const selectFiber = (fiber) => {
-    const fiberEle = document.getElementById('fiber-text');
-    fiberEle.setAttribute('fiber-id', fiber._id);
     setFiberText(fiber.name);
+    setSearchInfo({ ...searchInfo, fiber: fiber._id });
   }
 
   // selectWeight
   const selectWeight = (weight) => {
-    const weightEle = document.getElementById('weight-text');
-    weightEle.setAttribute('weight-id', weight._id);
     setWeightText(weight.name);
+    setSearchInfo({ ...searchInfo, weight: weight._id });
   }
 
   // selectColor
   const selectColor = (color) => {
-    const colorEle = document.getElementById('color-text');
-    colorEle.setAttribute('color-id', color._id);
     setColorText(color.name);
+    setSearchInfo({ ...searchInfo, color: color._id });
   }
 
   // selectNeedle
   const selectNeedle = (needle) => {
-    const needleEle = document.getElementById('needle-text');
-    needleEle.setAttribute('needle-id', needle._id);
     setNeedleText(needle.size);
+    setSearchInfo({ ...searchInfo, needle: needle._id });
   }
 
+  const [getSearch, { data }] = useLazyQuery(QUERY_SEARCH);
 
-  const [getSearch, { loading, error, data }] = useLazyQuery(QUERY_SEARCH);
+  // Search Click Handler
+  const onSearchClick = () => {
+    getSearch({ variables: { input: searchInfo } });
+    setSkillText('Pick A Skill Level');
+    setFiberText('Pick Fiber');
+    setWeightText('Pick Weight');
+    setColorText('Pick Color');
+    setNeedleText('Pick Needle Size');
+    setSearchInfo(null);
+  }
 
   if (needleQuery.loading || fiberQuery.loading || weightQuery.loading || colorQuery.loading) {
     return <div>Loading...</div>;
   }
 
+
   return (
     <div>
       <div className="search-bar">
         <div className='dropdown' id='skill-dropdown'>
-          <div id='skill-text' class="dropdown-text">{skillText}</div>
+          <div id='skill-text' className="dropdown-text">{skillText}</div>
           <div className='dropdown-content'>
             {
               skills.map((skill) =>
@@ -95,7 +105,7 @@ function Search() {
           </div>
         </div>
         <div className='dropdown' id='fiber-dropdown'>
-          <div id='fiber-text' class="dropdown-text">{fiberText}</div>
+          <div id='fiber-text' className="dropdown-text">{fiberText}</div>
           <div className='dropdown-content'>
             {
               fibers.map((fiber) =>
@@ -105,7 +115,7 @@ function Search() {
           </div>
         </div>
         <div className='dropdown' id='weight-dropdown'>
-          <div id='weight-text' class="dropdown-text">{weightText}</div>
+          <div id='weight-text' className="dropdown-text">{weightText}</div>
           <div className='dropdown-content'>
             {
               weights.map((weight) =>
@@ -115,7 +125,7 @@ function Search() {
           </div>
         </div>
         <div className='dropdown' id='color-dropdown'>
-          <div id='color-text' class="dropdown-text">{colorText}</div>
+          <div id='color-text' className="dropdown-text">{colorText}</div>
           <div className='dropdown-content'>
             {
               colors.map((color) =>
@@ -125,7 +135,7 @@ function Search() {
           </div>
         </div>
         <div className='dropdown' id='needle-dropdown'>
-          <div id='needle-text' class="dropdown-text">{needleText}</div>
+          <div id='needle-text' className="dropdown-text">{needleText}</div>
           <div className='dropdown-content'>
             {
               needles.map((needle) =>
@@ -134,27 +144,7 @@ function Search() {
             }
           </div>
         </div>
-        <div class="search-btn" onClick={() => {
-          const input = {};
-          const skillEle = document.getElementById('skill-text');
-          const fiberEle = document.getElementById('fiber-text');
-          const weightEle = document.getElementById('weight-text');
-          const colorEle = document.getElementById('color-text');
-          const needleEle = document.getElementById('needle-text');
-          if (skillEle.innerHTML !== 'Pick A Skill Level') input['skill'] = skillEle.innerHTML;
-          if (fiberEle.innerHTML !== 'Pick Fiber') input['fiber'] = fiberEle.getAttribute('fiber-id');
-          if (weightEle.innerHTML !== 'Pick Weight') input['weight'] = weightEle.getAttribute('weight-id');
-          if (colorEle.innerHTML !== 'Pick Color') input['color'] = colorEle.getAttribute('color-id');
-          if (needleEle.innerHTML !== 'Pick Needle Size') input['needle'] = needleEle.getAttribute('needle-id');
-          console.log(input);
-          
-          getSearch({ variables: { input } });
-          setSkillText('Pick A Skill Level');
-          setFiberText('Pick Fiber');
-          setWeightText('Pick Weight');
-          setColorText('Pick Color');
-          setNeedleText('Pick Needle Size');;
-        }}>Search</div>
+        <div className="search-btn" onClick={onSearchClick}>Search</div>
       </div>
       {data?.searchPattern && <PatternList patterns={data.searchPattern} />}
     </div> 
