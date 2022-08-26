@@ -122,6 +122,7 @@ export const QUERY_PATTERN = gql`
   }
 `;
 
+
 export const QUERY_SEARCH = gql`
   query searchPattern($input: Search) {
     searchPattern(input: $input) {

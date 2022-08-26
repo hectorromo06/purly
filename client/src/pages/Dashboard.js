@@ -1,8 +1,6 @@
 import React from "react";
 import "./Login.js";
-import Card from "react-bootstrap/Card";
-import Container from "react-bootstrap/esm/Container";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { QUERY_ME } from "../../src/utils/queries";
 import { useQuery } from "@apollo/client";
 
@@ -30,24 +28,24 @@ export default function UserDashboard() {
         <div className="d-flex flex-wrap mt-5 container">
           {cardInfo.map((card, index) => {
             return (
-              <Container className="col-auto">
-                <Card
+              <div className="col-auto">
+                <div
                   style={{ width: "18rem", height: "30rem" }}
                   key={index}
                   className="shadow-lg m-1 mb-5 text-center"
                 >
-                  <Card.Img variant="top" src={card.image} />
+                  {/* <div.Img variant="top" src={card.image} /> */}
 
-                  <Card.Body>
-                    <Card.Title className="cardUsername pb-2">
+                  <body>
+                    <div className="cardUsername pb-2">
                       {username}
-                    </Card.Title>
+                    </div>
                     <p>{card.description}</p>
                     <p>{card.email}</p>
                     <p>{card.patterns}</p>
-                  </Card.Body>
-                </Card>
-              </Container>
+                  </body>
+                </div>
+              </div>
             );
           })}
         </div>
@@ -55,3 +53,4 @@ export default function UserDashboard() {
     </>
   );
 }
+
