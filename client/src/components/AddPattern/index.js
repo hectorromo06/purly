@@ -89,12 +89,32 @@ const AddPattern = () => {
     // submit form
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-
+        
+        const input = document.querySelectorAll('#add-pattern-form');
+        // document.querySelector(
+            // '#name, #project, #madeFor, #skill, #fiber, #weight, #color, #needle, #description, #instructions'
+            // ).value
+        // document.querySelector('#name').value;
+        // document.querySelector('#project').value;
+        // document.querySelector('#madeFor').value;
+        // event.target.skill.value;
+        // event.target.fiber.value;
+        // event.target.weight.value;
+        // event.target.color.value;
+        // event.target.needle.value;
+        // document.querySelector('#skill').value;
+        // document.querySelector('#fiber').value;
+        // document.querySelector('#weight').value;
+        // document.querySelector('#color').value;
+        // document.querySelector('#needle').value;
+        // document.querySelector('#description').value;
+        // document.querySelector('#instructions').value;
+        console.log(input);
         try {
             await addPattern({
-                variables: { input },
+                variables: { input }
             });
-
+            
         } catch (e) {
             console.error(e);
         }
@@ -112,7 +132,7 @@ const AddPattern = () => {
                 </div>
                 <div>
                     {<input type="text" value={formState.name}
-                    onChange={handleChange}
+                    id='name' onChange={handleChange}
                     /*onChange={(e) => setFormState({formState, name: e.target.value})} 
                     onBlur={handleChange}*/ name="name" />}
                 </div>
@@ -122,7 +142,7 @@ const AddPattern = () => {
                 </div>
                 <div>
                     {<input type="text" value={formState.project}
-                    onChange={handleChange}
+                    id='project' onChange={handleChange}
                     /*onChange={(e) => setFormState({formState, project: e.target.value})} 
                     onBlur={handleChange}*/ name="project" />}
                 </div>
@@ -132,7 +152,7 @@ const AddPattern = () => {
                 </div>
                 <div>
                     {<input type="text" value={formState.madeFor}
-                    onChange={handleChange}
+                    id='madeFor' onChange={handleChange}
                     /*onChange={(e) => setFormState({formState, madeFor: e.target.value})} 
                     onBlur={handleChange}*/ name="madeFor" />}
                 </div>
@@ -143,7 +163,7 @@ const AddPattern = () => {
                 <div>
 
                     {/* skill select */}
-                    <select>
+                    <select id='skill'>
                         <option value='Select a skill level'>Select a skill level</option>
                         {skills.map((skill) => (
                             <option key={skill.value} value={skill.value}>
@@ -154,7 +174,7 @@ const AddPattern = () => {
 
                 {/* fiber, weight, color, needle */}
                 <div>
-                    <select>
+                    <select id='fiber'>
                         <option value='Select a fiber'>Select a fiber</option>
                         {fibers.map((fiber) => (
                             <option key={fiber._id} value={fiber._id}>
@@ -164,7 +184,7 @@ const AddPattern = () => {
                 </div>
 
                 <div>
-                    <select>
+                    <select id='weight'>
                         <option value='Select a weight'>Select a weight</option>
                         {weights.map((weight) => (
                             <option key={weight._id} value={weight._id}>
@@ -173,7 +193,7 @@ const AddPattern = () => {
                     </select>
                 </div>
 
-                <select>
+                <select id='color'>
                     <option value='Select a color'>Select a color</option>
                     {colors.map((color) => (
                         <option key={color._id} value={color._id}>
@@ -182,7 +202,7 @@ const AddPattern = () => {
                 </select>
 
                 <div>
-                    <select>
+                    <select id='needle'>
                         <option value='Select a needle size'>Select a needle size</option>
                         {needles.map((needle) => (
                             <option key={needle._id} value={needle._id}>
@@ -197,6 +217,7 @@ const AddPattern = () => {
                 </div>
                 <div>
                     <textarea name='description' value={formState.description}
+                    id='description'
                     onChange={handleChange}
                     /*onChange={(e) => setFormState({formState, description: e.target.value})} onBlur={handleChange}*/ 
                     rows="5" cols='23' />
@@ -207,6 +228,7 @@ const AddPattern = () => {
                 </div>
                 <div>
                     <textarea name='instructions' value={formState.instructions}
+                    id='instructions'
                     onChange={handleChange}
                     /*onChange={(e) => setFormState({formState, instructions: e.target.value})} onBlur={handleChange}*/ 
                     rows="5" cols='23' />
