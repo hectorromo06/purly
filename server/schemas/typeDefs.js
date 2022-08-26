@@ -84,7 +84,7 @@ const typeDefs = gql`
     weight: String
     color: String
     needle: String
-    instructions: [String]
+    instructions: String
     description: String
   }
 `;

@@ -49,7 +49,7 @@ db.once('open', async () => {
       color: colors[Math.floor(Math.random() * colors.length)]._id,
       needle: needles[Math.floor(Math.random() * needles.length)]._id,
       description: faker.lorem.words(Math.round(Math.random() * 20) + 1),
-      instructions: [faker.lorem.words(Math.round(Math.random() * 20) + 1), faker.lorem.words(Math.round(Math.random() * 20) + 1), faker.lorem.words(Math.round(Math.random() * 20) + 1),]
+      instructions: faker.lorem.words(Math.round(Math.random() * 20) + 1)
     },
 
     {
@@ -63,7 +63,7 @@ db.once('open', async () => {
       color: colors[Math.floor(Math.random() * colors.length)]._id,
       needle: needles[Math.floor(Math.random() * needles.length)]._id,
       description: faker.lorem.words(Math.round(Math.random() * 20) + 1),
-      instructions: [faker.lorem.words(Math.round(Math.random() * 20) + 1), faker.lorem.words(Math.round(Math.random() * 20) + 1), faker.lorem.words(Math.round(Math.random() * 20) + 1),]
+      instructions: faker.lorem.words(Math.round(Math.random() * 20) + 1)
     },
 
     {
@@ -77,7 +77,7 @@ db.once('open', async () => {
       color: colors[Math.floor(Math.random() * colors.length)]._id,
       needle: needles[Math.floor(Math.random() * needles.length)]._id,
       description: faker.lorem.words(Math.round(Math.random() * 20) + 1),
-      instructions: [faker.lorem.words(Math.round(Math.random() * 20) + 1), faker.lorem.words(Math.round(Math.random() * 20) + 1),]
+      instructions: faker.lorem.words(Math.round(Math.random() * 20) + 1)
     },
   ];
 
