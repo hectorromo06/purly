@@ -49,7 +49,7 @@ mutation addPattern($input: PatternInput!) {
     _id
     name
     project
-    for
+    madeFor
     skill
     fiber {
       _id

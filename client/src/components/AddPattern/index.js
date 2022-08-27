@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { useParams } from 'react-router-dom';
-// import Auth from '../../utils/auth';
+import Auth from '../../utils/auth';
 import { ADD_PATTERN } from '../../utils/mutations';
 import {
     QUERY_YARN,
@@ -49,12 +49,6 @@ const AddPattern = () => {
         });
     };
 
-    // const fibers = [{ value: 'acrylic' }, { value: 'cotton' }, { value: 'wool' }];
-    // const weights = [{ value: 'bulky' }, { value: 'sport' }, { value: 'fine' }, { value: 'medium' }];
-    // const colors = [{ value: 'blue' }, { value: 'black' }, { value: 'brown' }, { value: 'red' }, { value: 'purple' }];
-    // const needleData = [{ size: '2.25mm' }, { size: '2.75mm' }, { size: '3mm' }, { size: '3.25mm' }, 
-    // { size: '5mm' }, { size: '6mm' }];
-
     // Skill List
     const skills = [{ value: 'beginner' }, { value: 'intermediate' }, { value: 'advanced' }];
 
@@ -84,37 +78,33 @@ const AddPattern = () => {
     // console.log('Needle Query' + needleQuery);
 
 
-    const [addPattern, { data, error }] = useMutation(ADD_PATTERN)
+    const [addPattern] = useMutation(ADD_PATTERN)
 
     // submit form
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         
         const input = document.querySelectorAll('#add-pattern-form');
-        // document.querySelector(
-            // '#name, #project, #madeFor, #skill, #fiber, #weight, #color, #needle, #description, #instructions'
-            // ).value
-        // document.querySelector('#name').value;
-        // document.querySelector('#project').value;
-        // document.querySelector('#madeFor').value;
-        // event.target.skill.value;
-        // event.target.fiber.value;
-        // event.target.weight.value;
-        // event.target.color.value;
-        // event.target.needle.value;
-        // document.querySelector('#skill').value;
-        // document.querySelector('#fiber').value;
-        // document.querySelector('#weight').value;
-        // document.querySelector('#color').value;
-        // document.querySelector('#needle').value;
-        // document.querySelector('#description').value;
-        // document.querySelector('#instructions').value;
-        console.log(input);
+       
+        console.log(formState);
+        console.log(Auth.getProfile());
         try {
             await addPattern({
-                variables: { input }
+                variables: { input: formState }
             });
-            
+            setFormState({
+            name: '',
+            project: '',
+            madeFor: '',
+            skill: 'Select a skill level',
+            fiber: 'Select a fiber',
+            weight: 'Select a weight',
+            color: 'Select a color',
+            needle: 'Select a needle size',
+            username: '',
+            description: '',
+            instructions: ''
+            })
         } catch (e) {
             console.error(e);
         }
@@ -132,9 +122,9 @@ const AddPattern = () => {
                 </div>
                 <div>
                     {<input type="text" value={formState.name}
-                    id='name' onChange={handleChange}
-                    /*onChange={(e) => setFormState({formState, name: e.target.value})} 
-                    onBlur={handleChange}*/ name="name" />}
+                    id='name' 
+                    onChange={(e) => setFormState({formState, name: e.target.value})} 
+                    name="name" />}
                 </div>
 
                 <div>
@@ -142,9 +132,9 @@ const AddPattern = () => {
                 </div>
                 <div>
                     {<input type="text" value={formState.project}
-                    id='project' onChange={handleChange}
-                    /*onChange={(e) => setFormState({formState, project: e.target.value})} 
-                    onBlur={handleChange}*/ name="project" />}
+                    id='project'
+                    onChange={(e) => setFormState({formState, project: e.target.value})} 
+                    onBlur={handleChange} name="project" />}
                 </div>
 
                 <div>
@@ -152,9 +142,9 @@ const AddPattern = () => {
                 </div>
                 <div>
                     {<input type="text" value={formState.madeFor}
-                    id='madeFor' onChange={handleChange}
-                    /*onChange={(e) => setFormState({formState, madeFor: e.target.value})} 
-                    onBlur={handleChange}*/ name="madeFor" />}
+                    id='madeFor'
+                    onChange={(e) => setFormState({formState, madeFor: e.target.value})} 
+                    name="madeFor" />}
                 </div>
 
                 <div>
@@ -163,7 +153,7 @@ const AddPattern = () => {
                 <div>
 
                     {/* skill select */}
-                    <select id='skill'>
+                    <select id='skill' value={formState.skill} onChange={(event) => setFormState({...formState, skill: event.target.value})}>
                         <option value='Select a skill level'>Select a skill level</option>
                         {skills.map((skill) => (
                             <option key={skill.value} value={skill.value}>
@@ -174,7 +164,7 @@ const AddPattern = () => {
 
                 {/* fiber, weight, color, needle */}
                 <div>
-                    <select id='fiber'>
+                    <select id='fiber' value={formState.fiber} onChange={(event) => setFormState({...formState, fiber: event.target.value})}>
                         <option value='Select a fiber'>Select a fiber</option>
                         {fibers.map((fiber) => (
                             <option key={fiber._id} value={fiber._id}>
@@ -184,7 +174,7 @@ const AddPattern = () => {
                 </div>
 
                 <div>
-                    <select id='weight'>
+                    <select id='weight' value={formState.weight} onChange={(event) => setFormState({...formState, weight: event.target.value})}>
                         <option value='Select a weight'>Select a weight</option>
                         {weights.map((weight) => (
                             <option key={weight._id} value={weight._id}>
@@ -193,7 +183,7 @@ const AddPattern = () => {
                     </select>
                 </div>
 
-                <select id='color'>
+                <select id='color' value={formState.color} onChange={(event) => setFormState({...formState, color: event.target.value})}>
                     <option value='Select a color'>Select a color</option>
                     {colors.map((color) => (
                         <option key={color._id} value={color._id}>
@@ -202,7 +192,7 @@ const AddPattern = () => {
                 </select>
 
                 <div>
-                    <select id='needle'>
+                    <select id='needle' value={formState.needle} onChange={(event) => setFormState({...formState, needle: event.target.value})}>
                         <option value='Select a needle size'>Select a needle size</option>
                         {needles.map((needle) => (
                             <option key={needle._id} value={needle._id}>
@@ -218,8 +208,7 @@ const AddPattern = () => {
                 <div>
                     <textarea name='description' value={formState.description}
                     id='description'
-                    onChange={handleChange}
-                    /*onChange={(e) => setFormState({formState, description: e.target.value})} onBlur={handleChange}*/ 
+                    onChange={(e) => setFormState({formState, description: e.target.value})} 
                     rows="5" cols='23' />
                 </div>
 
@@ -229,8 +218,7 @@ const AddPattern = () => {
                 <div>
                     <textarea name='instructions' value={formState.instructions}
                     id='instructions'
-                    onChange={handleChange}
-                    /*onChange={(e) => setFormState({formState, instructions: e.target.value})} onBlur={handleChange}*/ 
+                    onChange={(e) => setFormState({formState, instructions: e.target.value})}
                     rows="5" cols='23' />
                 </div>
 

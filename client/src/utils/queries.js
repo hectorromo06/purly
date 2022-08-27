@@ -46,7 +46,7 @@ export const QUERY_PATTERNS = gql`
       _id
       name
       project
-      for
+      madeFor
       skill
       comments {
         _id
@@ -87,7 +87,7 @@ export const QUERY_PATTERN = gql`
       _id
       name
       project
-      for
+      madeFor
       skill
       comments {
         _id
