@@ -58,7 +58,7 @@ const patternSchema = new Schema(
             trim: true
         },
         instructions: {
-            type: [String],
+            type: String,
             required: true,
             trim: true
         }

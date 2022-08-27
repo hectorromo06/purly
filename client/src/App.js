@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {
   ApolloClient,
@@ -8,22 +8,24 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import AddPattern from './components/AddPattern';
 
+import Navbar from "./components/Navbar"
 
-// import Search from "./pages/Search";
-
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import SinglePattern from "./pages/SinglePattern"
+import Search from "./pages/Search"
 
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: "/graphql",
 });
 
 const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem('id_token');
+  const token = localStorage.getItem("id_token");
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : '',
+      authorization: token ? `Bearer ${token}` : "",
     },
   };
 });
@@ -34,20 +36,34 @@ const client = new ApolloClient({
 });
 
 function App() {
-//  // navigation options
-//  const [navOptions] = useState(['Login', 'Dashboard', 'About Us', 'Pattern']);
-
-//  // Setting the current render to Login
-//   // setCurrentNavOp is used to change the navOption
-//   const [currentNavOp, setCurrentNavOp] = useState(navOptions[0]);
-  
 
   return (
     <ApolloProvider client={client}>
-      <Router>
-        <Routes>
-          <Route path="/" element={<AddPattern />} />
+       <Router>
+
+        <div>
+          <Navbar />
+          <div>
+          <Routes>
+          <Route
+            path = '/login'
+            element={<Login />}
+            />
+            <Route
+            path = '/search'
+            element={<Search />}
+            />
+            <Route
+            path = '/pattern/:id'
+            element={<SinglePattern />}
+            />
+            <Route
+            path = '/signup'
+            element={<Signup />}
+            />
       </Routes>
+      </div>
+      </div>
       </Router>
     </ApolloProvider>
   );

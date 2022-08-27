@@ -55,7 +55,7 @@ const typeDefs = gql`
     user(username: String!): User
     patterns(username: String): [Pattern]
     pattern(_id: ID!): Pattern
-    searchPattern(input: Search!): [Pattern]
+    searchPattern(input: Search): [Pattern]
     yarnCharacteristic(type: String): [YarnCharacteristic]
     needle: [Needle]
   },
@@ -65,7 +65,7 @@ const typeDefs = gql`
     fiber: String
     weight: String
     color: String
-    needleId: ID
+    needle: String
   },
 
   type Mutation {
