@@ -8,7 +8,7 @@ function PatternList(props) {
     <div id="patterns">
       {
         patterns.map((pattern) => (
-          <div class="pattern-info">
+          <div className="pattern-info">
             <Link to={`/pattern/${pattern._id}`}>
             <h3>{pattern.name}</h3>
             </Link>
