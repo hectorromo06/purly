@@ -92,19 +92,19 @@ const AddPattern = () => {
             await addPattern({
                 variables: { input: formState }
             });
-            setFormState({
-            name: '',
-            project: '',
-            madeFor: '',
-            skill: 'Select a skill level',
-            fiber: 'Select a fiber',
-            weight: 'Select a weight',
-            color: 'Select a color',
-            needle: 'Select a needle size',
-            username: '',
-            description: '',
-            instructions: ''
-            })
+            // setFormState({
+            // name: '',
+            // project: '',
+            // madeFor: '',
+            // skill: 'Select a skill level',
+            // fiber: 'Select a fiber',
+            // weight: 'Select a weight',
+            // color: 'Select a color',
+            // needle: 'Select a needle size',
+            // username: '',
+            // description: '',
+            // instructions: ''
+            // })
         } catch (e) {
             console.error(e);
         }

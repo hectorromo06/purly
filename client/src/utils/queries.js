@@ -11,7 +11,7 @@ export const QUERY_USER = gql`
         name
         username
         project
-        for
+        madeFor
         skill
         createdAt
         description      
@@ -31,7 +31,7 @@ export const QUERY_ME = gql`
       name
       username
       project
-      for
+      madeFor
       skill
       createdAt
       description      
