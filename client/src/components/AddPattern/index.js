@@ -19,7 +19,7 @@ const AddPattern = () => {
             weight: '',
             color: '',
             needle: '',
-            username: '',
+            // username: '',
             description: '',
             instructions: ''
         }

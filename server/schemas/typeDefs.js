@@ -27,7 +27,7 @@ const typeDefs = gql`
     needle: Needle
     username: String
     description: String
-    instructions: [String]
+    instructions: String
   },
 
   type Comment {
