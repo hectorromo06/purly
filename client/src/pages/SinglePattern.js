@@ -1,26 +1,27 @@
 import React from 'react';
 
 import { useMutation, useQuery } from '@apollo/client';
-import { QUERY_USER, QUERY_ME } from '../utils/queries';
 import { QUERY_PATTERN } from '../utils/queries';
 import { ADD_COMMENT } from '../utils/mutations';
 import { Navigate, useParams } from 'react-router-dom';
-import CommentForm from '../components/Comments';
 import Auth from '../utils/auth';
 
 const SinglePattern = (props) => {
-    const { username: userParam } = useParams();
+    
     const [addComment] = useMutation(ADD_COMMENT);
     const { id: patternId } = useParams();
-    const { loading, data } = useQuery(QUERY_PATTERN, userParam ? QUERY_USER : QUERY_ME , {
-        variables: { _id: patternId },
+    const { loading, data } = useQuery(QUERY_PATTERN, {
+        variables: { id: patternId },
       });
     
-    const user = data?.me || data?.user || {};
-    const pattern = data?.pattern || {};
+    
+    const pattern = data?.pattern || [];
+
+    console.log(patternId);
+    console.log(pattern);
 
     // navigate to pattern page if username is yours
-    if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
+    if (Auth.loggedIn() && Auth.getProfile().data.username) {
     return <Navigate to="/pattern/:id/user" />;
     }
     if (loading) {
@@ -37,51 +38,55 @@ const SinglePattern = (props) => {
     //   );
     // }
 
-    const handleClick = async () => {
-      try {
-        await addComment({
-          variables: { id: user._id },
-        });
-      } catch (e) {
-        console.error(e);
-      }
-    };
+    // const handleClick = async () => {
+    //   try {
+    //     await addComment({
+    //       variables: { id: user._id },
+    //     });
+    //   } catch (e) {
+    //     console.error(e);
+    //   }
+    // };
 
     // Image tag should be added soon
-    console.log(pattern);
+    
  return (
     <div>
       <div className="single-pattern">
         <p className="card-header">
           <span style={{ fontWeight: 700 }} className="text-light">
-            {pattern.username}
+            <h2>{pattern.name}</h2>
           </span>{' '}
-          Selected on {pattern.createdAt}
+          Created by {pattern.username} on {pattern.createdAt}
         </p>
+        <p>
+          Made for: {pattern.madeFor}
+        </p>
+        <p>
+          Project: {pattern.project}
+        </p>
+        <p>
+          Skill Level: {pattern.skill}
+        </p>
+        <div className=''>
+          <h3>Description:</h3>
+        {pattern.description}
+        </div>
         <h3>Materials needed:</h3>
-        
-        <div className="card-body">
-          <p>{pattern.description}</p>
-        </div>
-        <div className="card-body">
-          
-          <p>{pattern.instructions}</p>
-        </div>
+        <p>
+          Needle size: {pattern.needle.size}
+        </p>
+        <p>
+          Yarn: {pattern.weight.name} {pattern.color.name} {pattern.fiber.name}
+        </p>
+        <h3>Instructions:</h3>
+        {pattern.instructions}
+      </div>
+
+      <div>
+        {/* COMMENT COMPONENT */}
       </div>
       
-      {/* COMMENTS */}
-      <div className="comment-content">
-        <h2 className="">
-          Viewing {userParam ? `${user.username}'s` : 'your'} profile.
-        </h2>
-        <CommentForm />
-
-        {userParam && (
-          <button className="add-comment" onClick={handleClick}>
-            Add Comment
-          </button>
-        )}
-      </div>
     </div>
   );
 }
