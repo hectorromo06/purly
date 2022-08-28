@@ -107,46 +107,46 @@ const AddPattern = () => {
     };
 
     return (
-        <section>
-            <h1>Add a Pattern</h1>
-            <form id='add-pattern-form' onSubmit={handleFormSubmit}>
+        <section className='add-pattern-form-section'>
+            <h1 className='form-title'>Add a Pattern</h1>
+            <form className='add-pattern-form' onSubmit={handleFormSubmit}>
                 <div>
-                    <label htmlFor='name'>Name</label>
+                    <label htmlFor='name' className='form-labels'>Name</label>
                 </div>
                 <div>
                     {<input type="text" value={formState.name}
-                    id='name' onChange={handleChange}
+                    className='form-fields' onChange={handleChange}
                     onSubmit={(e) => setFormState({formState, name: e.target.value})}
                     name="name" />}
                 </div>
                 
                 <div>
-                    <label htmlFor='project'>Project</label>
+                    <label htmlFor='project' className='form-labels'>Project</label>
                 </div>
                 <div>
                     {<input type="text" value={formState.project}
-                    id='project' onChange={handleChange}
+                    className='form-fields' onChange={handleChange}
                     onSubmit={(e) => setFormState({formState, project: e.target.value})}
                      name="project" />}
                 </div>
                 
                 <div>
-                    <label htmlFor='madeFor'>Made For</label>
+                    <label htmlFor='madeFor' className='form-labels'>Made For</label>
                 </div>
                 
                 <div>
                     {<input type="text" value={formState.madeFor}
-                    id='madeFor' onChange={handleChange}
+                    className='form-fields' onChange={handleChange}
                     onSubmit={(e) => setFormState({formState, madeFor: e.target.value})}
                     onBlur={handleChange} name="madeFor" />}
                 </div>
                 
-                <div>
-                    <label htmlFor='skill'>Skill</label>
-                </div>
+                {/* <div>
+                    <label htmlFor='skill' className='form-labels'>Skill</label>
+                </div> */}
                 <div>
                     {/* skill select */}
-                    <select id='skill' value={formState.skill} onChange={(event) => setFormState({...formState, skill: event.target.value})}>
+                    <select className='form-fields' value={formState.skill} onChange={(event) => setFormState({...formState, skill: event.target.value})}>
                         <option value='Select a skill level'>Select a skill level</option>
                         {skills.map((skill) => (
                             <option key={skill.value} value={skill.value}>
@@ -157,7 +157,7 @@ const AddPattern = () => {
                 
                 {/* fiber, weight, color, needle */}
                 <div>
-                    <select id='fiber' value={formState.fiber} onChange={(event) => setFormState({...formState, fiber: event.target.value})}>
+                    <select className='form-fields' value={formState.fiber} onChange={(event) => setFormState({...formState, fiber: event.target.value})}>
                         <option value='Select a fiber'>Select a fiber</option>
                         {fibers.map((fiber) => (
                             <option key={fiber._id} value={fiber._id}>
@@ -167,7 +167,7 @@ const AddPattern = () => {
                 </div>
                 
                 <div>
-                    <select id='weight' value={formState.weight} onChange={(event) => setFormState({...formState, weight: event.target.value})}>
+                    <select className='form-fields' value={formState.weight} onChange={(event) => setFormState({...formState, weight: event.target.value})}>
                         <option value='Select a weight'>Select a weight</option>
                         {weights.map((weight) => (
                             <option key={weight._id} value={weight._id}>
@@ -176,7 +176,7 @@ const AddPattern = () => {
                     </select>
                 </div>
                 
-                <select id='color' value={formState.color} onChange={(event) => setFormState({...formState, color: event.target.value})}>
+                <select className='form-fields' value={formState.color} onChange={(event) => setFormState({...formState, color: event.target.value})}>
                     <option value='Select a color'>Select a color</option>
                     {colors.map((color) => (
                         <option key={color._id} value={color._id}>
@@ -185,7 +185,7 @@ const AddPattern = () => {
                 </select>
                 
                 <div>
-                    <select id='needle' value={formState.needle} onChange={(event) => setFormState({...formState, needle: event.target.value})}>
+                    <select className='form-fields' value={formState.needle} onChange={(event) => setFormState({...formState, needle: event.target.value})}>
                         <option value='Select a needle size'>Select a needle size</option>
                         {needles.map((needle) => (
                             <option key={needle._id} value={needle._id}>
@@ -195,27 +195,27 @@ const AddPattern = () => {
                 </div>
                 
                 <div>
-                    <label htmlFor='description'>Description</label>
+                    <label htmlFor='description' className='form-labels'>Description</label>
                 </div>
                 <div>
                     <textarea name='description' value={formState.description}
-                    id='description'
+                    className='form-fields'
                     onChange={handleChange}
                     onSubmit={(e) => setFormState({formState, description: e.target.value})}
                     rows="5" cols='23' />
                 </div>
                 
                 <div>
-                    <label htmlFor='instructions'>Instructions</label>
+                    <label htmlFor='instructions' className='form-labels'>Instructions</label>
                 </div>
                 <div>
                     <textarea name='instructions' value={formState.instructions}
-                    id='instructions'
+                    className='form-fields'
                     onChange={handleChange}
                     onSubmit={(e) => setFormState({formState, instructions: e.target.value})}
                     rows="5" cols='23' />
                 </div>
-                <button type="submit">
+                <button type="submit" className='search-btn'>
                     Submit
                 </button>
             </form>
