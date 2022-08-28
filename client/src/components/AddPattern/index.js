@@ -48,13 +48,6 @@ const AddPattern = () => {
         });
     };
     
-    // const fibers = [{ value: 'acrylic' }, { value: 'cotton' }, { value: 'wool' }];
-    // const weights = [{ value: 'bulky' }, { value: 'sport' }, { value: 'fine' }, { value: 'medium' }];
-    // const colors = [{ value: 'blue' }, { value: 'black' }, { value: 'brown' }, { value: 'red' }, { value: 'purple' }];
-    // const needleData = [{ size: '2.25mm' }, { size: '2.75mm' }, { size: '3mm' }, { size: '3.25mm' },
-    // { size: '5mm' }, { size: '6mm' }];
-    // Skill List
-    
     const skills = [{ value: 'beginner' }, { value: 'intermediate' }, { value: 'advanced' }];
     
     // Getting Fiber Data
@@ -99,7 +92,20 @@ const AddPattern = () => {
         } catch (e) {
             console.error(e);
         }
+        setFormState({ 
+            name: '',
+            project: '',
+            madeFor: '',
+            skill: 'Select a skill level',
+            fiber: 'Select a fiber',
+            weight: 'Select a weight',
+            color: 'Select a color',
+            needle: 'Select a needle size',
+            description: '',
+            instructions: ''
+        });
     };
+
     return (
         <section>
             <h1>Add a Pattern</h1>
@@ -110,27 +116,31 @@ const AddPattern = () => {
                 <div>
                     {<input type="text" value={formState.name}
                     id='name' onChange={handleChange}
-                    /*onChange={(e) => setFormState({formState, name: e.target.value})}
-                    onBlur={handleChange}*/ name="name" />}
+                    onSubmit={(e) => setFormState({formState, name: e.target.value})}
+                    name="name" />}
                 </div>
+                
                 <div>
                     <label htmlFor='project'>Project</label>
                 </div>
                 <div>
                     {<input type="text" value={formState.project}
                     id='project' onChange={handleChange}
-                    /*onChange={(e) => setFormState({formState, project: e.target.value})}
-                    onBlur={handleChange}*/ name="project" />}
+                    onSubmit={(e) => setFormState({formState, project: e.target.value})}
+                     name="project" />}
                 </div>
+                
                 <div>
                     <label htmlFor='madeFor'>Made For</label>
                 </div>
+                
                 <div>
                     {<input type="text" value={formState.madeFor}
                     id='madeFor' onChange={handleChange}
-                    /*onChange={(e) => setFormState({formState, madeFor: e.target.value})}
-                    onBlur={handleChange}*/ name="madeFor" />}
+                    onSubmit={(e) => setFormState({formState, madeFor: e.target.value})}
+                    onBlur={handleChange} name="madeFor" />}
                 </div>
+                
                 <div>
                     <label htmlFor='skill'>Skill</label>
                 </div>
@@ -144,6 +154,7 @@ const AddPattern = () => {
                             </option>))};
                     </select>
                 </div>
+                
                 {/* fiber, weight, color, needle */}
                 <div>
                     <select id='fiber' value={formState.fiber} onChange={(event) => setFormState({...formState, fiber: event.target.value})}>
@@ -154,6 +165,7 @@ const AddPattern = () => {
                             </option>))};
                     </select>
                 </div>
+                
                 <div>
                     <select id='weight' value={formState.weight} onChange={(event) => setFormState({...formState, weight: event.target.value})}>
                         <option value='Select a weight'>Select a weight</option>
@@ -163,6 +175,7 @@ const AddPattern = () => {
                             </option>))};
                     </select>
                 </div>
+                
                 <select id='color' value={formState.color} onChange={(event) => setFormState({...formState, color: event.target.value})}>
                     <option value='Select a color'>Select a color</option>
                     {colors.map((color) => (
@@ -170,6 +183,7 @@ const AddPattern = () => {
                             {color.name}
                         </option>))};
                 </select>
+                
                 <div>
                     <select id='needle' value={formState.needle} onChange={(event) => setFormState({...formState, needle: event.target.value})}>
                         <option value='Select a needle size'>Select a needle size</option>
@@ -179,6 +193,7 @@ const AddPattern = () => {
                             </option>))};
                     </select>
                 </div>
+                
                 <div>
                     <label htmlFor='description'>Description</label>
                 </div>
@@ -186,9 +201,10 @@ const AddPattern = () => {
                     <textarea name='description' value={formState.description}
                     id='description'
                     onChange={handleChange}
-                    /*onChange={(e) => setFormState({formState, description: e.target.value})} onBlur={handleChange}*/
+                    onSubmit={(e) => setFormState({formState, description: e.target.value})}
                     rows="5" cols='23' />
                 </div>
+                
                 <div>
                     <label htmlFor='instructions'>Instructions</label>
                 </div>
@@ -196,7 +212,7 @@ const AddPattern = () => {
                     <textarea name='instructions' value={formState.instructions}
                     id='instructions'
                     onChange={handleChange}
-                    /*onChange={(e) => setFormState({formState, instructions: e.target.value})} onBlur={handleChange}*/
+                    onSubmit={(e) => setFormState({formState, instructions: e.target.value})}
                     rows="5" cols='23' />
                 </div>
                 <button type="submit">
