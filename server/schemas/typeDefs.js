@@ -21,7 +21,10 @@ const typeDefs = gql`
     fiber: YarnCharacteristic
     weight: YarnCharacteristic
     color: YarnCharacteristic
-    needle: Needle
+    # fiber: String
+    # weight: String
+    # color: String
+    needle: String
     username: String
     description: String
     instructions: [String]
