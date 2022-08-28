@@ -13,7 +13,7 @@ const SinglePattern = (props) => {
     const [addComment] = useMutation(ADD_COMMENT);
     const { id: patternId } = useParams();
     const { loading, data } = useQuery(QUERY_PATTERN, userParam ? QUERY_USER : QUERY_ME , {
-        variables: { _id: patternId, username: userParam },
+        variables: { _id: patternId },
       });
     
     const user = data?.me || data?.user || {};
@@ -48,6 +48,7 @@ const SinglePattern = (props) => {
     };
 
     // Image tag should be added soon
+    console.log(pattern);
  return (
     <div>
       <div className="single-pattern">
@@ -63,7 +64,7 @@ const SinglePattern = (props) => {
           <p>{pattern.description}</p>
         </div>
         <div className="card-body">
-          {/* MAP over instructions its just a string rn */}
+          
           <p>{pattern.instructions}</p>
         </div>
       </div>

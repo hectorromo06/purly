@@ -42,8 +42,8 @@ const Signup = () => {
           <title>Sign Up</title>
           <div className="content">
             <form onSubmit={handleFormSubmit}>
-            <h2 class="subtitle">Sign Up</h2>
-            <h1 class="title">Let's make something</h1>
+            <h2 className="subtitle">Sign Up</h2>
+            <h1 className="title">Let's make something</h1>
               <input
                 className="form-input"
                 placeholder="Your username"

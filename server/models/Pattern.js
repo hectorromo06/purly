@@ -20,7 +20,7 @@ const patternSchema = new Schema(
             required: true,
             trim: true
         },
-        for: {
+        madeFor: {
             type: String,
             required: true,
             trim: true

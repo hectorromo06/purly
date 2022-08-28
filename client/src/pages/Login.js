@@ -6,14 +6,14 @@ import { LOGIN_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
 
 function Login(props) {
-  const [formState, setFormState] = useState({ email: '', username: '', password: '' });
+  const [formState, setFormState] = useState({ email: '', password: '' });
   const [login, { error }] = useMutation(LOGIN_USER);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    try {
+    try { 
       const mutationResponse = await login({
-        variables: { email: formState.email, username: formState.username, password: formState.password },
+        variables: { email: formState.email, password: formState.password },
       });
       const token = mutationResponse.data.login.token;
       Auth.login(token);
@@ -47,7 +47,7 @@ function Login(props) {
             onChange={handleChange}
           />
         </div>
-        <div className="content">
+        {/* <div className="flex-row space-between my-2">
           <label htmlFor="username">username:</label>
           <input
           className='form-input'
@@ -56,9 +56,9 @@ function Login(props) {
             type="username"
             id="username"
             onChange={handleChange}
-          />
-        </div>
-        <div className="content">
+          /> 
+        </div>*/}
+        <div className="flex-row space-between my-2">
           <label htmlFor="pwd">Password:</label>
           <input
           className='form-input'
