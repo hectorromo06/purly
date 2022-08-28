@@ -65,3 +65,30 @@ code {
   background-color: green;
 }
 
+.add-pattern-form-section {
+  margin-left: 10px;
+}
+
+.add-pattern-form {
+  background-color: aquamarine;
+  max-width: 200px;
+  padding-left: 9px;
+  border-radius: 10px;
+}
+
+.form-fields {
+  border-radius: 5px;
+}
+
+.form-title {
+  /* margin-left: 23px; */
+  text-align: center;
+  font-weight: bolder;
+  /* font-size: 20px; */
+  background-color: rgb(6, 56, 6);
+  color: white;
+  padding: 5px 5% 5px 5%;
+  border-radius: 10px;
+  max-width: 90px;
+}
+
