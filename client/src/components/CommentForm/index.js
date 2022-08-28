@@ -2,35 +2,13 @@ import React, { useState } from 'react';
 
 import { useMutation } from '@apollo/client';
 import { ADD_COMMENT } from '../../utils/mutations';
-import { QUERY_ME } from '../../utils/queries';
 
-const CommentForm = () => {
+
+const CommentForm = ({patternId}) => {
   const [commentText, setText] = useState('');
   const [characterCount, setCharacterCount] = useState(0);
 
-  const [addComment, { error }] = useMutation(ADD_COMMENT, {
-    update(cache, { data: { addComment } }) {
-      
-        // could potentially not exist yet, so wrap in a try/catch
-      try {
-        // update me array's cache
-        const { me } = cache.readQuery({ query: QUERY_ME });
-        cache.writeQuery({
-          query: QUERY_ME,
-          data: { me: { ...me, comments: [...me.comments, addComment] } },
-        });
-      } catch (e) {
-        console.warn("First comment insertion by user!")
-      }
-
-      // update comments array's cache
-      const { comments } = cache.readQuery({ query: QUERY_ME });
-      cache.writeQuery({
-        query: QUERY_ME,
-        data: { comments: [addComment, ...comments] },
-      });
-    }
-  });
+  const [addComment, { error }] = useMutation(ADD_COMMENT);
 
   // update state based on form input changes
   const handleChange = (event) => {
@@ -46,7 +24,7 @@ const CommentForm = () => {
 
     try {
       await addComment({
-        variables: { commentText },
+        variables: { commentText, patternId },
       });
 
       // clear form value
@@ -70,15 +48,18 @@ const CommentForm = () => {
         onSubmit={handleFormSubmit}
       >
         <textarea
-          placeholder="Make a comment"
+          placeholder="Leave a comment for this pattern..."
           value={commentText}
-          className="form-input col-12 col-md-9"
+          className="form-input"
           onChange={handleChange}
         ></textarea>
-        <button className="btn col-12 col-md-3" type="submit">
+
+        <button className="btn" type="submit">
           Submit
         </button>
       </form>
+
+      {error && <div>Something went wrong...</div>}
     </div>
   );
 };

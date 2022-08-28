@@ -34,7 +34,7 @@ mutation addComment($patternId: ID!, $commentText: String!) {
     _id
     name
     project
-    MadeFor
+    madeFor
     skill
     username
     description
