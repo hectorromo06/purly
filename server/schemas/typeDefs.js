@@ -24,7 +24,7 @@ const typeDefs = gql`
     # fiber: String
     # weight: String
     # color: String
-    needle: String
+    needle: Needle
     username: String
     description: String
     instructions: [String]
