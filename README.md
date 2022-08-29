@@ -12,7 +12,7 @@
 - [Team](#team)
 
 ## Description
-
+Knitters from all over can relate to feeling the motivation to create something beautiful - but another thing they can relate to is not knowing where to start. Introducing Purly, a simplified application that renders a pattern for our users depending on specific inputs. Tell us your skill-level, what type of yarn you like to work with, even needle size! No need to worry about endless browsing online - everything is here for you already! Well, as we like to say here at Purly, "let's make something!".
 
 ## Challenge Criteria
 
