@@ -71,16 +71,57 @@ title {
   background-color:  #834a32;
 }
 
-<<<<<<< HEAD
 .patterns {
   background-color: #FDF2ED;
   padding: 30px;
   
 }
 
-h3, .pattern-description {
+h3, h2, .pattern-description {
   font-family: 'Jua', sans-serif;
   font-weight: bold;
+}
+
+.single-pattern {
+  background-color: #FDF2ED;
+  padding: 30px;
+}
+
+.card-header {
+  background-color: rgb(251, 251, 251);
+  border: 1px black solid;
+  padding: 10px;
+}
+
+.pattern-info {
+  font-family: 'inter';
+  font-weight: bold;
+}
+
+.comment-form {
+  background-color: #CE9D88;
+  border: 1px black solid;
+  padding: 10px;
+}
+
+.form-input {
+  border: 1px black solid;
+}
+
+.btn {
+  text-align: center;
+  font-weight: bolder;
+  font-size: 20px;
+  margin: auto;
+  background-color: #A66041;
+  border: 1px black solid;
+  color: white;
+  padding: 5px 5% 5px 5%;
+  border-radius: 10px;
+}
+
+.btn:hover {
+  background-color:  #834a32;
 }
 
 .wrapper {
@@ -167,7 +208,7 @@ h3, .pattern-description {
 ::placeholder {
   color: #111127;
 }
-=======
+
 .add-pattern-form-section {
   margin-left: 10px;
 }
@@ -195,4 +236,3 @@ h3, .pattern-description {
   max-width: 200px;
 }
 
->>>>>>> f0bc66c7283f6ebd0b550b8333ad08e96d9299e6

@@ -38,7 +38,7 @@ const SinglePattern = (props) => {
           <span style={{ fontWeight: 700 }} className="text-light">
             <h2>{pattern.name}</h2>
           </span>{' '}
-          Created by {pattern.username} on {pattern.createdAt}
+          <p className='pattern-info'>Created by {pattern.username} on {pattern.createdAt}</p>
         </div>
         <p>
           Made for: {pattern.madeFor}
