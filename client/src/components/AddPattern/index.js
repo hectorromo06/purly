@@ -235,7 +235,7 @@ const AddPattern = () => {
                     onSubmit={(e) => setFormState({formState, instructions: e.target.value})}
                     rows="5" cols='23' />
                 </div>
-                <button type="submit" className='search-btn'>
+                <button type="submit" className='submit-add-pattern'>
                     Submit
                 </button>
             </form>
