@@ -15,13 +15,13 @@ console.log()
   }
 
   return (
-    <>
-      <div>
-        <div className="cardContainer text-center">
-          <h1 className="">Your Creative Dashboard</h1>
+    <body className="wrapper">
+      <div className="dashcontainer">
+        <div>
+          <h1 className="title">Your Creative Dashboard</h1>
         </div>
-        <button> 
-            <Link to = {`/addpattern`}>Make A New Pattern</Link>
+        <button className="newpattern-btn"> 
+            <Link to = {`/addpattern`} className="subtitle">Make A New Pattern</Link>
         </button>
         <div>
             {me.patterns.map(( pattern) =>(
@@ -37,7 +37,7 @@ console.log()
         </div>
         
       </div>
-    </>
+    </body>
   );
 }
 
