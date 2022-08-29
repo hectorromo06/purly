@@ -8,7 +8,7 @@
 - [Screenshot](#screenshot)
 - [Tools](#tools)
 - [Installation](#installation)
-- [Deployed Link](#link)
+- [Deployed Link](#deploy-link)
 - [Team](#team)
 
 ## Description
