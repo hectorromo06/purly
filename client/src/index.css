@@ -257,12 +257,14 @@ h3, h2, .pattern-description {
 .add-pattern-form {
   background-color: #A66041;
   max-width: 200px;
-  padding-left: 9px;
   border-radius: 10px;
+  padding: 2%;
 }
 
 .form-fields {
   border-radius: 5px;
+  padding: 1%;
+  margin: 2%;
 }
 
 .form-title {
