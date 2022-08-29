@@ -13,8 +13,40 @@ code {
     monospace;
 }
 
-title {
+.nav {
+  height: 60px;
+  width: 100%;
+  background-color: #CE9D88;
+  position: relative;
+}
+
+.nav > .nav-header {
+  display: inline;
+}
+.nav > .nav-header > .nav-title {
   font-family: 'Luckiest Guy', sans-serif;
+  display: inline-block;
+  font-size: 25px;
+  color: rgb(0, 0, 0);
+  padding: 10px 10px 10px 50px;
+}
+
+
+.nav > .nav-links {
+  display: inline;
+  float: right;
+  font-size: 18px;
+}
+
+.nav > .nav-links > a {
+  display: inline-block;
+  padding: 13px 10px 13px 10px;
+  text-decoration: none;
+  color: #000000;
+}
+
+.nav > .nav-links > a:hover {
+  background-color: #98796c;
 }
 
 .search-bar {
@@ -85,6 +117,7 @@ h3, h2, .pattern-description {
 .single-pattern {
   background-color: #FDF2ED;
   padding: 30px;
+  margin: 10px;
 }
 
 .card-header {
@@ -96,6 +129,7 @@ h3, h2, .pattern-description {
 .pattern-info {
   font-family: 'inter';
   font-weight: bold;
+  margin: 10px;
 }
 
 .comment-form {
@@ -105,6 +139,13 @@ h3, h2, .pattern-description {
 }
 
 .form-input {
+  border: 1px black solid;
+}
+
+.comment-list {
+  padding: 10px;
+  margin: 10px;
+  background-color: #FDF2ED;
   border: 1px black solid;
 }
 
