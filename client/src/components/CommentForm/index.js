@@ -36,7 +36,7 @@ const CommentForm = ({patternId}) => {
   };
 
   return (
-    <div>
+    <div className='comment-form'>
       <p
         className={`m-0 ${characterCount === 280 || error ? 'text-error' : ''}`}
       >
