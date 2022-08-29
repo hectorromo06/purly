@@ -41,7 +41,7 @@ export const QUERY_ME = gql`
 `;
 
 export const QUERY_PATTERNS = gql`
-  query pattern($username: String) {
+  query patterns($username: String) {
     patterns(username: $username) {
       _id
       name

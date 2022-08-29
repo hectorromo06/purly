@@ -6,7 +6,8 @@ import { ADD_PATTERN } from '../../utils/mutations';
 import {
     QUERY_YARN,
     QUERY_NEEDLES,
-    QUERY_ME
+    QUERY_ME,
+    QUERY_PATTERNS
 } from '../../utils/queries';
 
 const AddPattern = () => {
@@ -87,6 +88,11 @@ const AddPattern = () => {
             catch (e){
                 console.warn("first pattern insertion by user")
             }
+            const { patterns } = cache.readQuery({query:QUERY_PATTERNS})
+            cache.writeQuery({
+                    query:QUERY_PATTERNS,
+                    data: {patterns: [addPattern, ...patterns]}
+            })
         }
     })
     
@@ -229,7 +235,7 @@ const AddPattern = () => {
                     onSubmit={(e) => setFormState({formState, instructions: e.target.value})}
                     rows="5" cols='23' />
                 </div>
-                <button type="submit" className='search-btn'>
+                <button type="submit" className='submit-add-pattern'>
                     Submit
                 </button>
             </form>

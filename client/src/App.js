@@ -18,6 +18,7 @@ import SinglePattern from "./pages/SinglePattern"
 import Search from "./pages/Search";
 import AddPattern from './components/AddPattern';
 import Dashboard from "./pages/Dashboard";
+import Home from "./pages/Homepage";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -71,6 +72,10 @@ function App() {
             <Route
             path='/dashboard'
             element={<Dashboard/>}
+            />
+            <Route
+            path='/'
+            element={<Home/>}
             />
       </Routes>
       </div>

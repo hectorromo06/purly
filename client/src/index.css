@@ -214,7 +214,7 @@ h3, h2, .pattern-description {
 }
 
 .add-pattern-form {
-  background-color: aquamarine;
+  background-color: #A66041;
   max-width: 200px;
   padding-left: 9px;
   border-radius: 10px;
@@ -229,10 +229,23 @@ h3, h2, .pattern-description {
   text-align: center;
   font-weight: bolder;
   /* font-size: 20px; */
-  background-color: rgb(6, 56, 6);
+  background-color: #834a32;
   color: white;
   padding: 5px 5px 5px 5px;
   border-radius: 10px;
   max-width: 200px;
 }
+
+.submit-add-pattern {
+  text-align: center;
+  font-weight: bolder;
+  font-size: 20px;
+  margin: auto;
+  background-color: #834a32;
+  border: 1px black solid;
+  color: white;
+  padding: 5px 5% 5px 5%;
+  border-radius: 10px;
+}
+
 
