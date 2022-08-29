@@ -13,32 +13,40 @@ code {
     monospace;
 }
 
-.purly {
-  text-decoration: none;
-  color: #A66041;
+.nav {
+  height: 60px;
+  width: 100%;
+  background-color: #CE9D88;
+  position: relative;
+}
+
+.nav > .nav-header {
+  display: inline;
+}
+.nav > .nav-header > .nav-title {
   font-family: 'Luckiest Guy', sans-serif;
-  display: flex;
-  justify-content: center;
-  font-size: 48px;
-  
-}
-
-.slogan {
-  padding: 0px;
-  display: flex;
-  justify-content: center;
-  border-bottom: 2px black solid;
-}
-
-.navbar {
-  font-size: 20px;
-  font-family: 'Inter', sans-serif;
-  text-decoration: none;
-  color: black;
-  padding: 10px;
   display: inline-block;
-  background-color: #92b9c2;
+  font-size: 25px;
+  color: rgb(0, 0, 0);
+  padding: 10px 10px 10px 50px;
+}
 
+
+.nav > .nav-links {
+  display: inline;
+  float: right;
+  font-size: 18px;
+}
+
+.nav > .nav-links > a {
+  display: inline-block;
+  padding: 13px 10px 13px 10px;
+  text-decoration: none;
+  color: #000000;
+}
+
+.nav > .nav-links > a:hover {
+  background-color: #98796c;
 }
 
 .search-bar {
