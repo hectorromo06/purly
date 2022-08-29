@@ -13,8 +13,32 @@ code {
     monospace;
 }
 
-title {
+.purly {
+  text-decoration: none;
+  color: #A66041;
   font-family: 'Luckiest Guy', sans-serif;
+  display: flex;
+  justify-content: center;
+  font-size: 48px;
+  
+}
+
+.slogan {
+  padding: 0px;
+  display: flex;
+  justify-content: center;
+  border-bottom: 2px black solid;
+}
+
+.navbar {
+  font-size: 20px;
+  font-family: 'Inter', sans-serif;
+  text-decoration: none;
+  color: black;
+  padding: 10px;
+  display: inline-block;
+  background-color: #92b9c2;
+
 }
 
 .search-bar {
@@ -85,6 +109,7 @@ h3, h2, .pattern-description {
 .single-pattern {
   background-color: #FDF2ED;
   padding: 30px;
+  margin: 10px;
 }
 
 .card-header {
@@ -96,6 +121,7 @@ h3, h2, .pattern-description {
 .pattern-info {
   font-family: 'inter';
   font-weight: bold;
+  margin: 10px;
 }
 
 .comment-form {
@@ -105,6 +131,13 @@ h3, h2, .pattern-description {
 }
 
 .form-input {
+  border: 1px black solid;
+}
+
+.comment-list {
+  padding: 10px;
+  margin: 10px;
+  background-color: #FDF2ED;
   border: 1px black solid;
 }
 

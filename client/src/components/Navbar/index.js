@@ -14,10 +14,12 @@ const Navbar = () => {
     <header className="">
     <div className="">
       <Link to="/">
-        <h1>Purly</h1>
+        <h1 className='purly'>Purly</h1>
+        
       </Link>
+      <h3 className='slogan'> let's make something </h3>
 
-      <nav className="">
+      <nav className="navbar">
         <Link to="/search">Search</Link>
         {Auth.loggedIn() ? (
           <>
