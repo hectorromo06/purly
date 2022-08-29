@@ -104,6 +104,9 @@ const AddPattern = () => {
             description: '',
             instructions: ''
         });
+        return <div>
+            formState.name
+        </div>
     };
 
     return (
