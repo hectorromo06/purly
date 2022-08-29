@@ -71,6 +71,7 @@ title {
   background-color:  #834a32;
 }
 
+<<<<<<< HEAD
 .patterns {
   background-color: #FDF2ED;
   padding: 30px;
@@ -166,3 +167,32 @@ h3, .pattern-description {
 ::placeholder {
   color: #111127;
 }
+=======
+.add-pattern-form-section {
+  margin-left: 10px;
+}
+
+.add-pattern-form {
+  background-color: aquamarine;
+  max-width: 200px;
+  padding-left: 9px;
+  border-radius: 10px;
+}
+
+.form-fields {
+  border-radius: 5px;
+}
+
+.form-title {
+  /* margin-left: 23px; */
+  text-align: center;
+  font-weight: bolder;
+  /* font-size: 20px; */
+  background-color: rgb(6, 56, 6);
+  color: white;
+  padding: 5px 5px 5px 5px;
+  border-radius: 10px;
+  max-width: 200px;
+}
+
+>>>>>>> f0bc66c7283f6ebd0b550b8333ad08e96d9299e6
