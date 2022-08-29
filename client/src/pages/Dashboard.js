@@ -16,14 +16,14 @@ console.log()
 
   return (
     <>
-      <div>
-        <div className="cardContainer text-center">
-          <h1 className="">Your Creative Dashboard</h1>
+      <div className="wrapper">
+        <div className="container">
+          <h1 className="title">Your Creative Dashboard</h1>
         </div>
-        <button> 
-            <Link to = {`/addpattern`}>Make A New Pattern</Link>
+        <button className="container"> 
+            <Link to = {`/addpattern`} className="subtitle">Make A New Pattern</Link>
         </button>
-        <div>
+        <div className="container">
             {me.patterns.map(( pattern) =>(
                 <div>
                     <Link to = {`/pattern/${pattern._id}`}>
