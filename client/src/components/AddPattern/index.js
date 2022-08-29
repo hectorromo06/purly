@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { useParams } from 'react-router-dom';
@@ -5,7 +6,9 @@ import Auth from '../../utils/auth';
 import { ADD_PATTERN } from '../../utils/mutations';
 import {
     QUERY_YARN,
-    QUERY_NEEDLES
+    QUERY_NEEDLES,
+    QUERY_ME,
+    QUERY_PATTERNS
 } from '../../utils/queries';
 
 const AddPattern = () => {
@@ -74,7 +77,25 @@ const AddPattern = () => {
     const needles = needleQuery.data?.needle || [];
     // console.log('Needle Query' + needleQuery);
     
-    const [addPattern] = useMutation(ADD_PATTERN)
+    const [addPattern] = useMutation(ADD_PATTERN, {
+        update(cache, {data:{addPattern}}){
+            try{
+                const{me} = cache.readQuery({query:QUERY_ME})
+                cache.writeQuery({
+                    query:QUERY_ME, 
+                    data: {me:{...me, patterns: [...me.patterns, addPattern]}}
+                })
+            }
+            catch (e){
+                console.warn("first pattern insertion by user")
+            }
+            const { patterns } = cache.readQuery({query:QUERY_PATTERNS})
+            cache.writeQuery({
+                    query:QUERY_PATTERNS,
+                    data: {patterns: [addPattern, ...patterns]}
+            })
+        }
+    })
     
     // submit form
     const handleFormSubmit = async (event) => {
@@ -104,9 +125,6 @@ const AddPattern = () => {
             description: '',
             instructions: ''
         });
-        return <div>
-            formState.name
-        </div>
     };
 
     return (
@@ -218,7 +236,7 @@ const AddPattern = () => {
                     onSubmit={(e) => setFormState({formState, instructions: e.target.value})}
                     rows="5" cols='23' />
                 </div>
-                <button type="submit" className='search-btn'>
+                <button type="submit" className='submit-add-pattern'>
                     Submit
                 </button>
             </form>
