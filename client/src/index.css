@@ -5,9 +5,234 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  z-index: 0;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+title {
+  font-family: 'Luckiest Guy', sans-serif;
+}
+
+.search-bar {
+  display: flex;
+  border: 1px black solid;
+  text-align: center;
+  flex-wrap: wrap;
+  background-color: #CE9D88;
+  padding: 20px;
+  border-radius: 25px;
+  margin: 50px;
+}
+
+.search-bar  .dropdown {
+  position: relative;
+  width: 18%;
+  text-align: center;
+  background-color:white;
+  margin: 1%;
+}
+
+.search-bar .dropdown .dropdown-text {
+  font-weight: bolder;
+  padding: 5px;
+}
+.search-bar .dropdown .dropdown-content {
+  display: none;
+  z-index: 1;
+  text-align: center;
+  background-color: lightblue;
+  position: absolute;
+  width: 100%;
+  font-weight: bold;
+  padding: 5px 0 5px 0;
+}
+
+.search-bar .dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.search-btn {
+  text-align: center;
+  font-weight: bolder;
+  font-size: 20px;
+  margin: auto;
+  background-color: #A66041;
+  border: 1px black solid;
+  color: white;
+  padding: 5px 5% 5px 5%;
+  border-radius: 10px;
+}
+
+.search-btn:hover {
+  background-color:  #834a32;
+}
+
+.patterns {
+  background-color: #FDF2ED;
+  padding: 30px;
+  
+}
+
+h3, h2, .pattern-description {
+  font-family: 'Jua', sans-serif;
+  font-weight: bold;
+}
+
+.single-pattern {
+  background-color: #FDF2ED;
+  padding: 30px;
+}
+
+.card-header {
+  background-color: rgb(251, 251, 251);
+  border: 1px black solid;
+  padding: 10px;
+}
+
+.pattern-info {
+  font-family: 'inter';
+  font-weight: bold;
+}
+
+.comment-form {
+  background-color: #CE9D88;
+  border: 1px black solid;
+  padding: 10px;
+}
+
+.form-input {
+  border: 1px black solid;
+}
+
+.btn {
+  text-align: center;
+  font-weight: bolder;
+  font-size: 20px;
+  margin: auto;
+  background-color: #A66041;
+  border: 1px black solid;
+  color: white;
+  padding: 5px 5% 5px 5%;
+  border-radius: 10px;
+}
+
+.btn:hover {
+  background-color:  #834a32;
+}
+
+.wrapper {
+  min-height: 100vh;
+  color: #000;
+  font-family: 'Muli', sans-serif;
+  font-size: 1rem;
+  background-color: #FDF2ED;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+}
+
+.container {
+  background-color: #fff;
+  padding: 1em;
+  border-radius: 1em;
+  max-width: 768px;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  -webkit-box-shadow: 0px 17px 34px -20px #A66041;
+          box-shadow: 0px 17px 34px -20px #A66041;
+}
+
+.title {
+  margin-bottom: 0.9em;
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  margin-bottom: 0.5em;
+  font-weight: 700;
+}
+
+.text {
+  font-size: 1rem;
+  margin-bottom: 0.8em;
+}
+
+.submit {
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 700;
+  background-color: #7498A1;
+  padding: 0.9em 0;
+  display: inline-block;
+  border: none;
+  border-radius: 0.5em;
+  width: 100%;
+  margin-bottom: 1.3em;
+}
+
+.content {
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  padding: 0 2em;
+  margin-bottom: 1.8em;
+}
+
+.form-input {
+  padding: 0.5em 0 0.5em 1.5em;
+  line-height: 3;
+  width: 100%;
+  border: 1px solid #d9d9d9;
+  border-radius: 0.5em;
+  margin-bottom: 1em;
+}
+
+::-webkit-input-placeholder {
+  color: #111127;
+}
+
+:-ms-input-placeholder {
+  color: #111127;
+}
+
+::-ms-input-placeholder {
+  color: #111127;
+}
+
+::placeholder {
+  color: #111127;
+}
+
+.add-pattern-form-section {
+  margin-left: 10px;
+}
+
+.add-pattern-form {
+  background-color: aquamarine;
+  max-width: 200px;
+  padding-left: 9px;
+  border-radius: 10px;
+}
+
+.form-fields {
+  border-radius: 5px;
+}
+
+.form-title {
+  /* margin-left: 23px; */
+  text-align: center;
+  font-weight: bolder;
+  /* font-size: 20px; */
+  background-color: rgb(6, 56, 6);
+  color: white;
+  padding: 5px 5px 5px 5px;
+  border-radius: 10px;
+  max-width: 200px;
+}
+
