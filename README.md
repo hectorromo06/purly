@@ -66,7 +66,7 @@ _Deploy to Heroku_
 
 ## Screenshot
 
-<img src='./purly-screenshot.gif' width=500 />
+<img src='./purly-screenshot.png' width=500 />
 
 ## Tools
 
