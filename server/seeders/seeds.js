@@ -42,42 +42,42 @@ db.once('open', async () => {
       name: 'Dragon',
       username: 'alesmonde0',
       project: 'scarf',
-      for: 'children',
+      madeFor: 'children',
       skill: 'beginner',
       fiber: fibers[Math.floor(Math.random() * fibers.length)]._id,
       weight: weights[Math.floor(Math.random() * weights.length)]._id,
       color: colors[Math.floor(Math.random() * colors.length)]._id,
       needle: needles[Math.floor(Math.random() * needles.length)]._id,
       description: faker.lorem.words(Math.round(Math.random() * 20) + 1),
-      instructions: [faker.lorem.words(Math.round(Math.random() * 20) + 1), faker.lorem.words(Math.round(Math.random() * 20) + 1), faker.lorem.words(Math.round(Math.random() * 20) + 1),]
+      instructions: faker.lorem.words(Math.round(Math.random() * 20) + 1)
     },
 
     {
       name: 'Fish',
       username: 'jwilloughway1',
       project: 'shirt',
-      for: 'women',
+      madeFor: 'women',
       skill: 'intermediate',
       fiber: fibers[Math.floor(Math.random() * fibers.length)]._id,
       weight: weights[Math.floor(Math.random() * weights.length)]._id,
       color: colors[Math.floor(Math.random() * colors.length)]._id,
       needle: needles[Math.floor(Math.random() * needles.length)]._id,
       description: faker.lorem.words(Math.round(Math.random() * 20) + 1),
-      instructions: [faker.lorem.words(Math.round(Math.random() * 20) + 1), faker.lorem.words(Math.round(Math.random() * 20) + 1), faker.lorem.words(Math.round(Math.random() * 20) + 1),]
+      instructions: faker.lorem.words(Math.round(Math.random() * 20) + 1)
     },
 
     {
       name: 'Triangle',
       username: 'jwilloughway1',
       project: 'shirt',
-      for: 'women',
+      madeFor: 'women',
       skill: 'advance',
       fiber: fibers[Math.floor(Math.random() * fibers.length)]._id,
       weight: weights[Math.floor(Math.random() * weights.length)]._id,
       color: colors[Math.floor(Math.random() * colors.length)]._id,
       needle: needles[Math.floor(Math.random() * needles.length)]._id,
       description: faker.lorem.words(Math.round(Math.random() * 20) + 1),
-      instructions: [faker.lorem.words(Math.round(Math.random() * 20) + 1), faker.lorem.words(Math.round(Math.random() * 20) + 1),]
+      instructions: faker.lorem.words(Math.round(Math.random() * 20) + 1)
     },
   ];
 
