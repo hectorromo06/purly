@@ -5,7 +5,8 @@ import Auth from '../../utils/auth';
 import { ADD_PATTERN } from '../../utils/mutations';
 import {
     QUERY_YARN,
-    QUERY_NEEDLES
+    QUERY_NEEDLES,
+    QUERY_ME
 } from '../../utils/queries';
 
 const AddPattern = () => {
@@ -74,7 +75,20 @@ const AddPattern = () => {
     const needles = needleQuery.data?.needle || [];
     // console.log('Needle Query' + needleQuery);
     
-    const [addPattern] = useMutation(ADD_PATTERN)
+    const [addPattern] = useMutation(ADD_PATTERN, {
+        update(cache, {data:{addPattern}}){
+            try{
+                const{me} = cache.readQuery({query:QUERY_ME})
+                cache.writeQuery({
+                    query:QUERY_ME, 
+                    data: {me:{...me, patterns: [...me.patterns, addPattern]}}
+                })
+            }
+            catch (e){
+                console.warn("first pattern insertion by user")
+            }
+        }
+    })
     
     // submit form
     const handleFormSubmit = async (event) => {
