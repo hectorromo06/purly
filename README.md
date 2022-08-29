@@ -116,10 +116,13 @@ _Analiza Boehning_
 Github: [analizajb](https://github.com/analizajb)
 
 _Jeralyn Airoso_
+
 Github: [jbairoso](https://github.com/jbairoso)
 
 _Hector Romo_
+
 Github: [hectorromo06](https://github.com/hectorromo06)
 
 _Alina Velazquez_
+
 Github: [velazquez13](https://github.com/velazquez13)
