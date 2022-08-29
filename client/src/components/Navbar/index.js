@@ -11,13 +11,12 @@ const Navbar = () => {
   };
 
   return (
-    <header className="">
-    <div className="">
-      <Link to="/">
-        <h1>Purly</h1>
-      </Link>
+    <div className="nav">
 
-      <nav className="">
+      <div className='nav-header'>
+       <h1 className='nav-title'>Purly</h1>
+      </div>
+      <div className="nav-links">
         <Link to="/search">Search</Link>
         {Auth.loggedIn() ? (
           <>
@@ -34,9 +33,8 @@ const Navbar = () => {
           </>
 
         )}
-      </nav>
+      </div>
     </div>
-  </header>
 );
 };
 

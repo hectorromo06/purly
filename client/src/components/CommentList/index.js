@@ -2,7 +2,7 @@ import React from 'react';
 
 const CommentList = ({ comments }) => {
   return (
-    <div className="">
+    <div className="comment-list">
       <div className="">
         <h3 className="">Comments</h3>
       </div>
