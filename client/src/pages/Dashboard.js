@@ -16,7 +16,7 @@ console.log()
 
   return (
     <body className="wrapper">
-      <div className="container">
+      <div className="dashcontainer">
         <div>
           <h1 className="title">Your Creative Dashboard</h1>
         </div>
