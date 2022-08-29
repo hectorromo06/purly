@@ -1,13 +1,22 @@
 import React from 'react';
-import Header from '../components/Header/index'
+import './Login';
+import { QUERY_PATTERNS} from '../../src/utils/queries';
+import { useQuery } from '@apollo/client';
+import PatternList from '../components/PatternList';
 
-const Home = () => {
+function Home() {
+
+    const { loading, data } = useQuery(QUERY_PATTERNS);
+
+    const patterns = data?.patterns || [];
+
+    if (loading) {
+        return <div>Loading...</div>
+    }
+
     return (
         <div className='home'>
-            <Header 
-                // navOptions={navOptions}
-                // currentNavOp={currentNavOp}
-            />
+            <PatternList patterns={patterns} />
         </div>
     );
 };
