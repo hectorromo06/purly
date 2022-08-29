@@ -248,4 +248,14 @@ h3, h2, .pattern-description {
   border-radius: 10px;
 }
 
-
+.newpattern-btn {
+  text-align: center;
+  font-weight: bolder;
+  font-size: 20px;
+  margin: auto;
+  background-color: #d9d9d9;
+  border: 1px black solid;
+  color: white;
+  padding: 5px 28% 5px 28%;
+  border-radius: 10px;
+}
