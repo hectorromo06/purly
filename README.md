@@ -1,4 +1,5 @@
 # Purly
+
 ## Table of Contents
 
 - [Description](#description)
@@ -12,6 +13,7 @@
 - [Team](#team)
 
 ## Description
+
 Knitters from all over can relate to feeling the motivation to create something beautiful - but another thing they can relate to is not knowing where to start. Introducing Purly, a simplified application that renders a pattern for our users depending on specific inputs. Tell us your skill-level, what type of yarn you like to work with, even needle size! No need to worry about endless browsing online - everything is here for you already! Well, as we like to say here at Purly, "let's make something!".
 
 ## Challenge Criteria
@@ -58,13 +60,13 @@ _Create stylized, interactive pages_
 
 _Deploy to Heroku_
 
-
 ## Presentation
 
 [PURLY Slides](https://docs.google.com/presentation/d/15HsNCn22vRGXKbEEwZ-mg9926_xi7uwr/edit?usp=sharing&ouid=114120646631802234048&rtpof=true&sd=true)
 
 ## Screenshot
 
+<img src='./purly-screenshot.gif' width=500 />
 
 ## Tools
 

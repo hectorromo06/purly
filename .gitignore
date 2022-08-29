@@ -39,7 +39,12 @@ build/Release
 
 # Dependency directories
 node_modules/
+client/node_modules
+server/node_modules
 jspm_packages/
+client/package-lock.json
+server/package-lock.json
+package-lock.json
 
 # TypeScript v1 declaration files
 typings/
