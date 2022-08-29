@@ -15,9 +15,9 @@ import Navbar from "./components/Navbar"
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import SinglePattern from "./pages/SinglePattern"
-import Search from "./pages/Search"
+import Search from "./pages/Search";
+import AddPattern from './components/AddPattern';
 import Dashboard from "./pages/Dashboard";
-
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -65,8 +65,12 @@ function App() {
             element={<Signup />}
             />
             <Route
-            path = '/dashboard'
-            element={<Dashboard />}
+            path = '/addpattern'
+            element={<AddPattern />}
+            />
+            <Route
+            path='/dashboard'
+            element={<Dashboard/>}
             />
       </Routes>
       </div>

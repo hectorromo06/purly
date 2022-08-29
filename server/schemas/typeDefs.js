@@ -14,17 +14,20 @@ const typeDefs = gql`
     _id: ID
     name: String
     project: String
-    for: String
+    madeFor: String
     skill: String
     comments: [Comment]
     createdAt: String
     fiber: YarnCharacteristic
     weight: YarnCharacteristic
     color: YarnCharacteristic
+    # fiber: String
+    # weight: String
+    # color: String
     needle: Needle
     username: String
     description: String
-    instructions: [String]
+    instructions: String
   },
 
   type Comment {
@@ -78,13 +81,13 @@ const typeDefs = gql`
   input PatternInput {
     name: String
     project: String
-    for: String
+    madeFor: String
     skill: String
     fiber: String
     weight: String
     color: String
     needle: String
-    instructions: [String]
+    instructions: String
     description: String
   }
 `;

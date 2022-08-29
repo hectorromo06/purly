@@ -5,15 +5,15 @@ function PatternList(props) {
   // get patterns
   const { patterns = [] } = props;
   return (
-    <div id="patterns">
+    <div className="patterns">
       {
         patterns.map((pattern) => (
-          <div class="pattern-info">
+          <div className="pattern-info">
             <Link to={`/pattern/${pattern._id}`}>
             <h3>{pattern.name}</h3>
             </Link>
-            <p>Created by {pattern.username} on {pattern.createdAt}</p>
-            <h4>Description</h4>
+            <p className='pattern-description'>Created by {pattern.username} on {pattern.createdAt}</p>
+            <h4 className='pattern-description'>Description</h4>
             <p>{pattern.description}</p>
           </div>
         ))

@@ -1,20 +1,15 @@
 import React from "react";
 import "./Login.js";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { QUERY_ME } from "../../src/utils/queries";
 import { useQuery } from "@apollo/client";
 
-export default function UserDashboard() {
+function UserDashboard() {
+console.log()
   const { data, loading } = useQuery(QUERY_ME);
+  const me = data?.me || {}
 
-  let cardInfo;
-
-  let username;
-
-  if (!loading) {
-    username = data.QUERY_ME.username;
-    cardInfo = data.QUERY_ME.card;
-  } else {
+  if (loading) {
     return <h2>loading...</h2>;
   }
 
@@ -22,35 +17,27 @@ export default function UserDashboard() {
     <>
       <div>
         <div className="cardContainer text-center">
-          <h1 className="">Your Creative Dasboard</h1>
+          <h1 className="">Your Creative Dashboard</h1>
         </div>
-
-        <div className="d-flex flex-wrap mt-5 container">
-          {cardInfo.map((card, index) => {
-            return (
-              <div className="col-auto">
-                <div
-                  style={{ width: "18rem", height: "30rem" }}
-                  key={index}
-                  className="shadow-lg m-1 mb-5 text-center"
-                >
-                  {/* <div.Img variant="top" src={card.image} /> */}
-
-                  <body>
-                    <div className="cardUsername pb-2">
-                      {username}
-                    </div>
-                    <p>{card.description}</p>
-                    <p>{card.email}</p>
-                    <p>{card.patterns}</p>
-                  </body>
+        <button> 
+            <Link to = {`/addpattern`}>Make A New Pattern</Link>
+        </button>
+        <div>
+            {me.patterns.map(( pattern) =>(
+                <div>
+                    <Link to = {`/pattern/${pattern._id}`}>
+                        <h2>{pattern.name}</h2>
+                    </Link>
+                    <p>Created On {pattern.createdAt}</p>
+                    <h3> Description </h3>
+                    <p>{pattern.description}</p>
                 </div>
-              </div>
-            );
-          })}
+            ))}
         </div>
+        
       </div>
     </>
   );
 }
 
+export default UserDashboard;
