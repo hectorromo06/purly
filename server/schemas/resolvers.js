@@ -48,7 +48,10 @@ const resolvers = {
     // Get Pattern by Id
     pattern: async (parent, { _id }) => {
       return Pattern.findOne({ _id })
-      .populate('needle');
+        .populate('needle')
+        .populate('fiber')
+        .populate('weight')
+        .populate('color');
     },
 
     // Get All Yarn Characteristics
