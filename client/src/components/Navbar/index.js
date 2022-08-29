@@ -14,7 +14,8 @@ const Navbar = () => {
     <div className="nav">
 
       <div className='nav-header'>
-       <h1 className='nav-title'>Purly</h1>
+       <Link to='/' className='nav-title'>Purly</Link>
+       
       </div>
       <div className="nav-links">
         <Link to="/search">Search</Link>
