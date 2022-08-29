@@ -8,6 +8,7 @@ function UserDashboard() {
 console.log()
   const { data, loading } = useQuery(QUERY_ME);
   const me = data?.me || {}
+  console.log(me)
 
   if (loading) {
     return <h2>loading...</h2>;
